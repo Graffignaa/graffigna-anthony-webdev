@@ -1,7 +1,48 @@
 body {
-    padding-top: 60px;
+    padding-top: 0px;
 }
 
-h4 {
-    padding-top: 1px;
+loginBtn {
+    color: #2b542c;
+}
+
+.ajg .navbar-default {
+    background-color: #5061a0;
+    border-color: #262d4c;
+}
+
+.ajg .navbar-default .navbar-brand {
+    color: white;
+}
+
+.ajg .navbar-default .navbar-collapse {
+    color: white;
+}
+
+.ajg .nav.navbar-nav.navbar-right li a {
+    color: white;
+}
+
+.ajg .list-group .list-group-item {
+    text-align: center;
+}
+
+.ajg .ajg-split-view-left {
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    z-index: 1;
+    overflow-y: scroll;
+}
+
+
+@media (min-width: 1200px) {
+    .col-lg-9.ajg-split-view-right {
+        width: 75%;
+        position: absolute;
+        right: 0px;
+        overflow-y: scroll;
+        top: 60px;
+        bottom: 0px;
+    }
 }

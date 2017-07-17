@@ -9,29 +9,33 @@
           crossorigin="anonymous">
 </head>
 
+<div class="container-fluid">
+    <h1>Login</h1>
+    <form method="post"
+          action="path/to/form/service">
+        <input name="username"
+               id="username"
+               type="text"
+               placeholder="Username"
+               class="form-control"/>
+        <input name="password"
+               id="password"
+               type="password"
+               placeholder="Password"
+               class="form-control"/>
+        <a class="btn btn-default btn-block btn-primary"
+           href="profile.html"
+           role="button"
+           id="loginBtn">Login</a>
 
-<h1>Login</h1>
-<form method="post"
-      action="path/to/form/service">
-    <input name="username"
-           id="username"
-           type="text"
-           placeholder="Username"
-           class="form-control"/>
-    <input name="password"
-           id="password"
-           type="password"
-           placeholder="Password"
-           class="form-control"/>
-    <a class="btn btn-default btn-block"
-       href="profile.html"
-       role="button">Login</a>
+        <a class="btn btn-default btn-block btn-success"
+           href="register.html"
+           role="button"
+           id="registerBtn">Register</a>
 
-    <a class="btn btn-default btn-block"
-       href="register.html"
-       role="button">Register</a>
+    </form>
 
-</form>
+</div>
 
 
 </html>
