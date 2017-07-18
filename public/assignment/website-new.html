@@ -8,49 +8,119 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
     <link href="css/styles.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <div class="ajg ajg-profile">
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-fixed-top navbar-inverse">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Websites</a>
+                <a class="navbar-brand" href="website-new.html">New Website</a>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
+            <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="website-new.html"><span class="glyphicon glyphicon-check" </a></li>
+                    <li><a href="website-list.html"><span class="glyphicon glyphicon-ok"></span> Finish Website</a></li>
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            </div>
+        </div>
     </nav>
 
-<form method="post"
-      action="path/to/form/service">
-    <label for="name">Name</label>
-    <input name="name"
-           id="name"
-           type="text"
-           placeholder="Name"
-           class="form-control"/>
-    <label for="description">Description</label>
-    <input name="name"
-           id="description"
-           type="text"
-           placeholder="Description"
-           class="form-control input-lg"/>
-</form>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-3 visible-lg ajg-split-view-left">
+
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        <div class="row">
+                            <div class="col-xs-10">Name</div>
+                            <div class="col-xs-2">
+                                <a href="website-new.html" style="color:white">
+                                    <span class="pull-right glyphicon glyphicon-plus"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10">
+                                <a href="website-edit.html">Music App</a>
+                            </div>
+                            <div class="col-xs-2">
+                                <a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10">
+                                <a href="website-edit.html">Movie App</a>
+                            </div>
+                            <div class="col-xs-2">
+                                <a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10">
+                                <a href="website-edit.html">Art App</a>
+                            </div>
+                            <div class="col-xs-2">
+                                <a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-xs-12 col-lg-9 ajg-split-view-right">
+
+                <label for="name">Name</label>
+                <input name="firstName"
+                       placeholder="Facebook"
+                       class="form-control"
+                       id="name"/>
+
+                <label for="description">Description</label>
+                <textarea name="firstName"
+                          rows="5"
+                          placeholder="Largest country in the world"
+                          class="form-control"
+                          id="description"></textarea>
+
+
+                <a class="btn btn-default btn-primary btn-block"
+                   href="website-list.html"
+                   role="button">Create</a>
+
+                <a class="btn btn-default btn-danger btn-block"
+                   href="website-list.html"
+                   role="button">Cancel</a>
+            </div>
+        </div>
+
+    </div>
 </div>
 
+
 </body>
+<!-- Footer To Profile -->
+<footer>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="Profile.html"><span class="glyphicon glyphicon-user"/></a>
+            </div>
+
+        </div>
+    </div>
+</footer>
 </html>
