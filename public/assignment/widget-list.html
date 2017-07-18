@@ -1,10 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mobile Website IDE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/widgetStyles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="ajg ajg-profile">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="widget-list.html">Widgets</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="page-list.html"><span class="glyphicon glyphicon-chevron-left"></span> Back to
+                        Pages</a></li>
+                    <li><a href="widget-choose.html"><span class="glyphicon glyphicon-plus"></span> Add Widget</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <h1>The Beatles</h1> <a href="widget-heading.html"><span class="glyphicon glyphicon-cog pull-right"/></a>
+            </li>
+            <li class="list-group-item">
+                <img src="https://s-media-cache-ak0.pinimg.com/736x/f3/fa/5f/f3fa5fd0e84e520d97d81725554a233e--beatles-album-covers-beatles-albums.jpg"
+                     class="img-fluid"
+                     alt="The Beatles"> <a href="widget-image.html">
+                <span class="glyphicon glyphicon-cog pull-right"/></a>
+            </li>
+            <li class="list-group-item">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item"
+                            src="https://www.youtube.com/embed/1Au_QW5MJNI"></iframe>
 
+                <a href="widget-youtube.html"><span
+                        class="glyphicon glyphicon-cog pull-right"/></a>
+                </div>
+            </li>
+
+        </ul>
+
+
+    </div>
+</div>
+
+<!-- Footer To Profile -->
+<footer>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="Profile.html"><span class="glyphicon glyphicon-user"/></a>
+            </div>
+
+        </div>
+    </div>
+</footer>
 </body>
 </html>
