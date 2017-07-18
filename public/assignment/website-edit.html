@@ -2,9 +2,119 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mobile Website IDE</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="ajg ajg-profile">
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="website-edit.html">Edit Website</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="website-list.html"><span class="glyphicon glyphicon-ok"></span> Finish Website</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-3 visible-lg ajg-split-view-left">
+
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        <div class="row">
+                            <div class="col-xs-10">Websites</div>
+                            <div class="col-xs-2">
+                                <a href="website-new.html" style="color:white">
+                                    <span class="pull-right glyphicon glyphicon-plus"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10">
+                                <a href="page-list.html">Music App</a>
+                            </div>
+                            <div class="col-xs-2">
+                                <a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10">
+                                <a href="page-list.html">Movie App</a>
+                            </div>
+                            <div class="col-xs-2">
+                                <a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10">
+                                <a href="page-list.html">Art App</a>
+                            </div>
+                            <div class="col-xs-2">
+                                <a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-xs-12 col-lg-9 ajg-split-view-right">
+
+                <label for="name">Name</label>
+                <input name="firstName"
+                       value="Facebook"
+                       class="form-control"
+                       id="name"/>
+
+                <label for="description">Description</label>
+                <textarea name="firstName"
+                          rows="5"
+                          class="form-control"
+                          id="description">A cool app for sharing music with your friends!</textarea>
+
+                <a class="btn btn-default btn-danger btn-block"
+                   href="website-list.html"
+                   role="button">Delete</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 </body>
+<!-- Footer To Profile -->
+<footer>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="Profile.html"><span class="glyphicon glyphicon-user"/></a>
+            </div>
+
+        </div>
+    </div>
+</footer>
 </html>
