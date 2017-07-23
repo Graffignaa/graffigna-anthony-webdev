@@ -7,7 +7,7 @@
           rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
-    <link href="css/styles.css" rel="stylesheet"/>
+    <link href="../../css/styles.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -21,11 +21,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="page-edit.html">Edit Page</a>
+                <a class="navbar-brand" href="website-edit.view.client.html">Edit Website</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="page-list.html"><span class="glyphicon glyphicon-ok"></span> Finish Page</a></li>
+                    <li><a href="website-list.view.client.html"><span class="glyphicon glyphicon-ok"></span> Finish Website</a></li>
                 </ul>
             </div>
         </div>
@@ -39,9 +39,9 @@
                 <ul class="list-group">
                     <li class="list-group-item active">
                         <div class="row">
-                            <div class="col-xs-10">Pages</div>
+                            <div class="col-xs-10">Websites</div>
                             <div class="col-xs-2">
-                                <a href="page-new.html" style="color:white">
+                                <a href="website-new.view.client.html" style="color:white">
                                     <span class="pull-right glyphicon glyphicon-plus"></span>
                                 </a>
                             </div>
@@ -50,10 +50,10 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10">
-                                <a href="widget-list.html">Concert Page</a>
+                                <a href="../page/page-list.view.client.html">Music App</a>
                             </div>
                             <div class="col-xs-2">
-                                <a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+                                <a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
                             </div>
                         </div>
 
@@ -61,20 +61,20 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10">
-                                <a href="widget-list.html">Band Page</a>
+                                <a href="../page/page-list.view.client.html">Movie App</a>
                             </div>
                             <div class="col-xs-2">
-                                <a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+                                <a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
                             </div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10">
-                                <a href="widget-list.html">Instrument Page</a>
+                                <a href="../page/page-list.view.client.html">Art App</a>
                             </div>
                             <div class="col-xs-2">
-                                <a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+                                <a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
                             </div>
                         </div>
                     </li>
@@ -84,21 +84,20 @@
             <div class="col-xs-12 col-lg-9 ajg-split-view-right">
 
                 <label for="name">Name</label>
-                <input name="Name"
-                       value="Concert Page"
+                <input name="firstName"
+                       value="Facebook"
                        class="form-control"
                        id="name"/>
 
-                <label for="title">Title</label>
-                <input name="title"
-                       placeholder="Concerts are cool!"
-                       class="form-control"
-                       id="title"></textarea>
+                <label for="description">Description</label>
+                <textarea name="firstName"
+                          rows="5"
+                          class="form-control"
+                          id="description">A cool app for sharing music with your friends!</textarea>
+
                 <a class="btn btn-default btn-danger btn-block"
-                   href="page-list.html"
+                   href="website-list.view.client.html"
                    role="button">Delete</a>
-
-
             </div>
         </div>
 
@@ -112,7 +111,7 @@
     <div class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="profile.html"><span class="glyphicon glyphicon-user"/></a>
+                <a class="navbar-brand" href="../user/profile.view.client.html"><span class="glyphicon glyphicon-user"/></a>
             </div>
 
         </div>

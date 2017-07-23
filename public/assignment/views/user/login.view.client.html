@@ -1,16 +1,3 @@
-<!Doctype html>
-<html lang="en" >
-<head>
-    <meta charset="UTF-8">
-    <title>Mobile Website IDE</title>
-
-
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
-</head>
-
 <div class="container-fluid">
 
     <div ng-controller="loginController">
@@ -18,6 +5,10 @@
 
         <div ng-show="welcomeUser" class="alert alert-info">
             Welcome Back {{welcomeUser.username}}
+        </div>
+
+        <div ng-show="errorMessage" class="alert alert-danger">
+            {{errorMessage}}
         </div>
 
         <form method="post"
@@ -39,13 +30,10 @@
                role="button"
                id="loginBtn">Login</a>
             <a class="btn btn-default btn-block btn-success"
-               href="register.html"
+               href="register.view.client.html"
                role="button"
                id="registerBtn">Register</a>
 
         </form>
     </div>
 </div>
-
-
-</html>
