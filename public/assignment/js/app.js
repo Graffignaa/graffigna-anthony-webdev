@@ -10,12 +10,41 @@ function configuration($routeProvider) {
         .when("/login", {
             templateUrl: "login.view.client.html"
         })
+        .when("/", {
+            templateUrl: "login.view.client.html"
+        })
         .when("/register", {
             templateUrl: "register.view.client.html"
         })
-        .when("/profile/:userId", {
+        .when("/user/:userId", {
             templateUrl: "profile.view.client.html"
         })
+        .when("/user/:userId/website", {
+            templateUrl: "website-list.view.client.html"
+        })
+        .when("/user/:userId/website/new", {
+            templateUrl: "website-new.view.client.html"
+        })
+        .when("/user/:userId/website/websiteId", {
+            templateUrl: "website-edit.view.client.html"
+        })
+        .when("/user/:userId/website/websiteId/page", {
+            templateUrl: "page-list.view.client.html"
+        })
+        .when("/user/:userId/website/websiteId/page/new", {
+            templateUrl: "page-new.view.client.html"
+        })
+        .when("/user/:userId/website/websiteId/page/pageId", {
+            templateUrl: "page-edit.view.client.html"
+        })
+        .when("/user/:userId/website/websiteId/page/pageId/widget", {
+            templateUrl: "widget-list.view.client.html"
+        })
+        .when("/user/:userId/website/websiteId/page/pageId/widget/new", {
+            templateUrl: "widget-list.view.client.html"
+        })
+
+
 }
 
 var users = [
@@ -27,16 +56,14 @@ var users = [
 
 function profileController($scope, $routeParams) {
     var userId = $routeParams["userId"];
-    for(var u in users){
-        if(users[u]._id === userId) {
+    for (var u in users) {
+        if (users[u]._id === userId) {
             $scope.user = users[u];
         }
     }
 }
 
 function loginController($scope, $location) {
-
-
 
 
     $scope.login = function (user) {
