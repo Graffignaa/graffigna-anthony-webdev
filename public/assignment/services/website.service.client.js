@@ -5,8 +5,8 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .factory("UserService", UserService);
-    function UserService() {
+        .factory("WebsiteService", WebsiteService);
+    function WebsiteService() {
 
         var websites = [
             {"_id": "123", "name": "Facebook", "developerId": "456", "description": "Lorem"},
