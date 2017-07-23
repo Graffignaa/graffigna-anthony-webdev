@@ -16,34 +16,34 @@
             .when("/register", {
                 templateUrl: "register.view.client.html"
             })
-            .when("/user/:userId", {
+            .when("/user/:uid", {
                 templateUrl: "profile.view.client.html"
             })
-            .when("/user/:userId/website", {
+            .when("/user/:uid/website", {
                 templateUrl: "website-list.view.client.html"
             })
-            .when("/user/:userId/website/new", {
+            .when("/user/:uid/website/new", {
                 templateUrl: "website-new.view.client.html"
             })
-            .when("/user/:userId/website/websiteId", {
+            .when("/user/:uid/website/wid", {
                 templateUrl: "website-edit.view.client.html"
             })
-            .when("/user/:userId/website/websiteId/page", {
+            .when("/user/:uid/website/wid/page", {
                 templateUrl: "page-list.view.client.html"
             })
-            .when("/user/:userId/website/websiteId/page/new", {
+            .when("/user/:uid/website/wid/page/new", {
                 templateUrl: "page-new.view.client.html"
             })
-            .when("/user/:userId/website/websiteId/page/pageId", {
+            .when("/user/:uid/website/wid/page/pid", {
                 templateUrl: "page-edit.view.client.html"
             })
-            .when("/user/:userId/website/websiteId/page/pageId/widget", {
+            .when("/user/:uid/website/wid/page/pid/widget", {
                 templateUrl: "widget-list.view.client.html"
             })
-            .when("/user/:userId/website/websiteId/page/pageId/widget/new", {
+            .when("/user/:uid/website/wid/page/pid/widget/new", {
                 templateUrl: "widget-list.view.client.html"
             })
-            .when("/user/:userId/website/websiteId/page/pageId/widget/widgerId", {
+            .when("/user/:uid/website/wid/page/pid/widget/wgid", {
                 templateUrl: "widget-edit.view.client.html"
             })
     }
