@@ -7,7 +7,7 @@
         .controller("PageEditController", PageEditController)
 
     function PageEditController() {
-
+        var vm = this;
     }
 
 })();

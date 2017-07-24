@@ -26,23 +26,27 @@
     <div class="container-fluid">
 
         <label for="name">Name</label>
-        <input name="firstName"
+        <input name="name"
+               ng-model="model-widget.name"
                class="form-control"
                id="name"/>
 
         <label for="text">Text</label>
         <input name="text"
+               ng-model="model.widget.text"
                class="form-control"
                id="text"/>
 
         <label for="url">URL</label>
         <input name="url"
+               ng-model="model.widget.url"
                value="https://s-media-cache-ak0.pinimg.com/236x/59/00/09/590009c4721ec01f24f43025a764a553--beatles-funny-the-beatles.jpg"
                class="form-control"
                id="url"/>
 
         <label for="width">Width</label>
         <input name="width"
+               ng-model="model.widget.width"
                class="form-control"
                id="width"/>
 

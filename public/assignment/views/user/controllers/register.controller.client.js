@@ -7,7 +7,7 @@
         .controller("RegisterController", RegisterController)
 
     function RegisterController() {
-
+        var vm = this;
     }
 
 })();

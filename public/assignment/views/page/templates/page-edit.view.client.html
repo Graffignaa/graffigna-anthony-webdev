@@ -74,13 +74,15 @@
             <div class="col-xs-12 col-lg-9 ajg-split-view-right">
 
                 <label for="name">Name</label>
-                <input name="Name"
+                <input name="name"
+                       ng-model="model.page.name"
                        value="Concert Page"
                        class="form-control"
                        id="name"/>
 
                 <label for="title">Title</label>
                 <input name="title"
+                       ng-model="model.page.title"
                        placeholder="Concerts are cool!"
                        class="form-control"
                        id="title"></textarea>

@@ -7,7 +7,7 @@
         .controller("PageNewController", PageNewController)
 
     function PageNewController() {
-
+        var vm = this;
     }
 
 })();

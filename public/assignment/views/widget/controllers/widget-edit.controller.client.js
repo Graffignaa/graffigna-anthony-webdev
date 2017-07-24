@@ -4,9 +4,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("WebsiteEditController", WebsiteEditController)
+        .controller("WidgetEditController", WidgetEditController)
 
-    function WebsiteEditController() {
+    function WidgetEditController() {
         var vm = this;
     }
 

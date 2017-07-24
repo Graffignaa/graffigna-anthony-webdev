@@ -11,9 +11,11 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#!/user/:uid/website/:wid/page/:pid/widget"><span class="glyphicon glyphicon-chevron-left"></span>
+                    <li><a href="#!/user/:uid/website/:wid/page/:pid/widget"><span
+                            class="glyphicon glyphicon-chevron-left"></span>
                         Back to Widget List</a></li>
-                    <li><a href="#!/user/:uid/website/:wid/page/:pid/widget"><span class="glyphicon glyphicon-ok"></span> Finish
+                    <li><a href="#!/user/:uid/website/:wid/page/:pid/widget"><span
+                            class="glyphicon glyphicon-ok"></span> Finish
                         Widget</a></li>
                 </ul>
             </div>
@@ -23,18 +25,21 @@
     <div class="container-fluid">
 
         <label for="name">Name</label>
-        <input name="firstName"
+        <input name="name"
+               ng-model="model.widget.name"
                class="form-control"
                id="name"/>
 
-        <label for="text">Name</label>
+        <label for="text">Text</label>
         <input name="text"
+               ng-model="model.widget.text"
                value="Music is fun"
                class="form-control"
                id="text"/>
 
-        <label for="size">Name</label>
+        <label for="size">Size</label>
         <input name="size"
+               ng-model="model.widget.size"
                value="3"
                class="form-control"
                id="size"/>
