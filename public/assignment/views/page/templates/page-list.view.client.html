@@ -24,21 +24,14 @@
     <div class="container-fluid">
 
         <ul class="list-group">
-            <li class="list-group-item">
-                <a href="#!/user/:uid/website/:wid/page/:pid/widget">Playlist Page</a> <a
-                    href="#!/user/:uid/website/:wid/page/:pid"><span
-                    class="glyphicon glyphicon-cog pull-right"/></a>
-            </li>
-            <li class="list-group-item">
-                <a href="#!/user/:uid/website/:wid/page/:pid/widget">Concert Page</a> <a
-                    href="#!/user/:uid/website/:wid/page/:pid"><span
-                    class="glyphicon glyphicon-cog pull-right"/></a>
-            </li>
-            <li class="list-group-item">
-                <a href="#!/user/:uid/website/:wid/page/:pid/widget">Instrument Page</a> <a
-                    href="#!/user/:uid/website/:wid/page/:pid"><span
-                    class="glyphicon glyphicon-cog pull-right"/></a>
-            </li>
+            <div ng-repeat="page in model.pages">
+                <li class="list-group-item">
+                    <a href="#!/user/:uid/website/:wid/page/:pid/widget">{{page.name}}</a> <a
+                        href="#!/user/:uid/website/:wid/page/:pid"><span
+                        class="glyphicon glyphicon-cog pull-right"/></a>
+                </li>
+            </div>
+
         </ul>
 
 

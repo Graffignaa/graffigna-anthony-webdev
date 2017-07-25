@@ -13,7 +13,7 @@
                 controllerAs: "model"
             })
             .when("/", {
-                templateUrl: "views/home/login.view.client.html",
+                templateUrl: "views/home/home.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })

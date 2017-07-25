@@ -4,10 +4,15 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("WidgetEditController", WidgetEditController)
+        .controller("WidgetEditController", WidgetEditController);
 
-    function WidgetEditController() {
+    function WidgetEditController($routeParams, WidgetService) {
         var vm = this;
+        var wgid = $routeParams["wgid"];
+
+        function init() {
+            vm.widget = WidgetService.findWidgetById(wgid);
+        }
     }
 
 })();

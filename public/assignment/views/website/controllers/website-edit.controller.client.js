@@ -4,10 +4,17 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("WebsiteEditController", WebsiteEditController)
+        .controller("WebsiteEditController", WebsiteEditController);
 
-    function WebsiteEditController() {
+    function WebsiteEditController($routeParams, WebsiteService) {
         var vm = this;
+        var wid = $routeParams["wid"];
+
+        function init() {
+            vm.website = WebsiteService.findWebsiteById(wid);
+        }
+
+        init();
     }
 
 })();

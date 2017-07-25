@@ -4,10 +4,16 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("PageEditController", PageEditController)
+        .controller("PageEditController", PageEditController);
 
-    function PageEditController() {
+    function PageEditController($routeParams, PageService) {
         var vm = this;
+        var pid = $routeParams["pid"];
+
+        function init() {
+            vm.page = PageService.findPageById(pid);
+        }
+        init();
     }
 
 })();

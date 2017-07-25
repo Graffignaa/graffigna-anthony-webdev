@@ -4,7 +4,7 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("WidgetChooseController", WidgetChooseController)
+        .controller("WidgetChooseController", WidgetChooseController);
 
     function WidgetChooseController() {
 

@@ -1,13 +1,31 @@
-/**
- * Created by Anthony on 7/24/2017.
- */
 (function () {
+
     angular
-        .module("WebAppMaker")
-        .controller("LoginController", LoginController)
+        .module("WamApp")
+        .controller("LoginController", LoginController);
 
-    function LoginController() {
-        var vm = this;
+    function LoginController($location, userService, $rootScope) {
+        var model = this;
+
+        model.login = login;
+
+        function init() {
+
+        }
+        init();
+
+        function login(user) {
+            if(!user) {
+                model.errorMessage = "User not found";
+                return;
+            }
+            user = userService.findUserByUsernameAndPassword(user.username, user.password);
+            if(user === null) {
+                model.errorMessage = "User not found";
+            } else {
+                $rootScope.currentUser = user;
+                $location.url("profile/"+user._id);
+            }
+        }
     }
-
 })();

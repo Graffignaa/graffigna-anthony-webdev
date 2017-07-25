@@ -4,7 +4,7 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("PageNewController", PageNewController)
+        .controller("PageNewController", PageNewController);
 
     function PageNewController() {
         var vm = this;

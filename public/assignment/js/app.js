@@ -1,6 +1,6 @@
 var app = angular.module("WebAppMaker", ["ngRoute"]);
 
-app.controller("loginController", loginController);
+//app.controller("loginController", loginController);
 app.controller("profileController", profileController);
 
 app.config(configuration);
