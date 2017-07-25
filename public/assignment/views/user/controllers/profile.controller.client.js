@@ -6,13 +6,22 @@
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($location, $routeParams, UserService) {
         var vm = this;
         var uid = $routeParams["uid"];
+
+        vm.goToWebsites = goToWebsites;
 
         function init() {
             vm.user = UserService.findUserById(uid);
         }
+
+        init();
+
+        function goToWebsites(user) {
+            $location.url("/user/" + user._id + "/website");
+        }
+
 
     }
 

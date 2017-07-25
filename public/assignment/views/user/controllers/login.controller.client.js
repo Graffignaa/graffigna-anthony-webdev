@@ -1,10 +1,10 @@
 (function () {
 
     angular
-        .module("WamApp")
+        .module("WebAppMaker")
         .controller("LoginController", LoginController);
 
-    function LoginController($location, userService, $rootScope) {
+    function LoginController($location, UserService, $rootScope) {
         var vm = this;
 
         vm.login = login;
@@ -19,7 +19,7 @@
             if(user) {
                 $location.url("/user/" + user._id);
             } else {
-                vm.alert = "Unable to login";
+                vm.errorMessage = "Unable to login";
             }
         }
 
