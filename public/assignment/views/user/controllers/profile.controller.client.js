@@ -11,6 +11,8 @@
         var uid = $routeParams["uid"];
 
         vm.goToWebsites = goToWebsites;
+        vm.goToProfile = goToProfile;
+
 
         function init() {
             vm.user = UserService.findUserById(uid);
@@ -21,6 +23,11 @@
         function goToWebsites(user) {
             $location.url("/user/" + user._id + "/website");
         }
+
+        function goToProfile(user) {
+            $location.url="/user/"+user._id;
+        }
+
 
 
     }
