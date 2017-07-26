@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .controller("WidgetChooseController", WidgetChooseController);
 
-    function WidgetChooseController() {
+    function WidgetChooseController($location, $routePa) {
 
     }
 

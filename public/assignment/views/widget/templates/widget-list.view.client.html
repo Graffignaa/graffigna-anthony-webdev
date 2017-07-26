@@ -7,14 +7,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#!/user/:uid/website/:wid/page/:pid/widget">Widgets</a>
+                <a class="navbar-brand" ng-click="model.goToSelf()">Widgets</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#!/user/:uid/website/:wid/page"><span
+                    <li><a ng-click="model.backToPage()"><span
                             class="glyphicon glyphicon-chevron-left"></span> Back to
                         Pages</a></li>
-                    <li><a href="#!/user/:uid/website/:wid/page/:pid/widget/new"><span
+                    <li><a ng-click="model.goToNew()"><span
                             class="glyphicon glyphicon-plus"></span> Add
                         Widget</a></li>
                 </ul>
@@ -22,19 +22,21 @@
         </div>
     </nav>
     <div class="container-fluid">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <div ng-repeat="widget in model.widgets">
-                    <div ng-include="model.getWidgetIncludeUrl(widget.widgetType)"></div>
-                </div>
-                {{model.widgets}}
-            </li>
+        <h2>Widget List</h2>
 
+        <div ng-repeat="widget in model.widgets">
+            <a ng-click="model.goToWidgetEdit(widget._id)">
 
-        </ul>
+                <span class="glyphicon glyphicon-cog pull-right"/>
+
+            </a>
+            <div ng-include="model.getWidgetIncludeUrl(widget.widgetType)"></div>
+
+        </div>
 
 
     </div>
+
     <!-- Footer To Profile -->
     <footer>
         <div class="navbar navbar-inverse navbar-fixed-bottom">

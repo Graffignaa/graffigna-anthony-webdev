@@ -1,13 +1,161 @@
-<div ng-repeat="widget in widgets">
-    <div ng-switch="widget.widgetType">
+<div class="ajg ajg-profile">
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#!/user/:uid/website/:wid/page/:pid/widget/:wgid">Widget Edit</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#!/user/:uid/website/:wid/page/:pid/widget"><span
+                            class="glyphicon glyphicon-chevron-left"></span>
+                        Back to Widget
+                        List</a></li>
+                    <li><a ng-click="model.createWidget(widget)"><span
+                            class="glyphicon glyphicon-ok"></span> Finish
+                        Widget</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div ng-switch="model.widget.widgetType">
+
         <div ng-switch-when="HEADING">
-            <ng-include src="'widget-heading.view.client.html'">
+            <div class="container-fluid">
+
+                <label for="name">Name</label>
+                <input name="name"
+                       ng-model="model.widget.name"
+                       class="form-control"
+                       id="name"/>
+
+                <label for="text">Text</label>
+                <input name="text"
+                       ng-model="model.widget.text"
+                       value="Music is fun"
+                       class="form-control"
+                       id="text"/>
+
+                <label for="size">Size</label>
+                <input name="size"
+                       ng-model="model.widget.size"
+                       value="3"
+                       class="form-control"
+                       id="size"/>
+
+                <a class="btn btn-default btn-danger btn-block"
+                   href="#!/user/:uid/website/:wid/page/:pid/widget"
+                   role="button">Delete</a>
+
+            </div>
         </div>
         <div ng-switch-when="IMAGE">
-            <ng-include src="'widget-image.view.client.html'">
+
+            <div class="container-fluid">
+
+                <label for="name">Name</label>
+                <input name="name"
+                       ng-model="model.widget.name"
+                       class="form-control"
+                       id="name"/>
+
+                <label for="text">Text</label>
+                <input name="text"
+                       ng-model="model.widget.text"
+                       value="Music is fun"
+                       class="form-control"
+                       id="text"/>
+
+                <label for="url">URL</label>
+                <input name="url"
+                       ng-model="model.widget.url"
+                       value="https://s-media-cache-ak0.pinimg.com/236x/59/00/09/590009c4721ec01f24f43025a764a553--beatles-funny-the-beatles.jpg"
+                       class="form-control"
+                       id="url"/>
+
+                <label for="width">Width</label>
+                <input name="width"
+                       ng-model="model.widget.width"
+                       value="100%"
+                       class="form-control"
+                       id="width"/>
+
+                <div class="input-group">
+                    <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Browse&hellip; <input type="file" style="display: none;" multiple>
+                    </span>
+                    </label>
+                    <input type="text" class="form-control">
+                </div>
+                <a class="btn btn-default btn-primary btn-block"
+                   href="#!/user/:uid/website/:wid/page/:pid/widget"
+                   role="button">Upload Image</a>
+                <a class="btn btn-default btn-danger btn-block"
+                   href="#!/user/:uid/website/:wid/page/:pid/widget"
+                   role="button">Delete</a>
+
+            </div>
+
         </div>
         <div ng-switch-when="YOUTUBE">
-            <ng-include src="'widget-youtube.view.client.html'">
+
+            <div class="container-fluid">
+
+                <label for="name">Name</label>
+                <input name="name"
+                       ng-model="model-widget.name"
+                       class="form-control"
+                       id="name"/>
+
+                <label for="text">Text</label>
+                <input name="text"
+                       ng-model="model.widget.text"
+                       class="form-control"
+                       id="text"/>
+
+                <label for="url">URL</label>
+                <input name="url"
+                       ng-model="model.widget.url"
+                       value="https://s-media-cache-ak0.pinimg.com/236x/59/00/09/590009c4721ec01f24f43025a764a553--beatles-funny-the-beatles.jpg"
+                       class="form-control"
+                       id="url"/>
+
+                <label for="width">Width</label>
+                <input name="width"
+                       ng-model="model.widget.width"
+                       class="form-control"
+                       id="width"/>
+
+                <a class="btn btn-default btn-danger btn-block"
+                   href="#!/user/:uid/website/:wid/page/:pid/widget"
+                   role="button">Delete</a>
+
+            </div>
+
+
         </div>
     </div>
 </div>
+
+
+<footer>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#!/user/:uid"><span
+                        class="glyphicon glyphicon-user"/></a>
+            </div>
+
+        </div>
+    </div>
+</footer>
+</div>
+
+
