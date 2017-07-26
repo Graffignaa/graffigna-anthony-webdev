@@ -7,11 +7,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#!/user/:uid/website/:wid/page/new">New Page</a>
+                <a class="navbar-brand" ng-click="model.goToSelf()">New Page</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#!/user/:uid/website/:wid/page"><span class="glyphicon glyphicon-ok"></span> Finish
+                    <li><a ng-click="model.createPage(model.page)"><span class="glyphicon glyphicon-ok"></span> Finish
                         Page</a></li>
                 </ul>
             </div>
@@ -95,7 +95,7 @@
         <div class="navbar navbar-inverse navbar-fixed-bottom">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#!/user/:uid"><span
+                    <a class="navbar-brand" ng-click="model.goToProfile()"><span
                             class="glyphicon glyphicon-user"/></a>
                 </div>
 
