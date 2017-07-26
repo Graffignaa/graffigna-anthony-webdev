@@ -7,11 +7,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#!/user/:uid/website/:wid">Edit Website</a>
+                <a class="navbar-brand" ng-click="model.goToSelf()">Edit Website</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#!/user/:uid/website"><span class="glyphicon glyphicon-ok"></span> Finish
+                    <li><a ng-click="model.updateWebsite(website)"><span class="glyphicon glyphicon-ok"></span> Finish
                         Website</a></li>
                 </ul>
             </div>
@@ -88,8 +88,11 @@
                           id="description">A cool app for sharing music with your friends!</textarea>
 
                 <a class="btn btn-default btn-danger btn-block"
-                   href="#!/user/:uid/website"
+                   ng-click="model.deleteWebsite()"
                    role="button">Delete</a>
+                <a class="btn btn-default btn-info btn-block"
+                   ng-click="model.backToList()"
+                   role="button">Cancel</a>
             </div>
         </div>
 
@@ -99,7 +102,7 @@
         <div class="navbar navbar-inverse navbar-fixed-bottom">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#!/user/:uid"><span
+                    <a class="navbar-brand" ng-click="model.goToProfile()"><span
                             class="glyphicon glyphicon-user"/></a>
                 </div>
 

@@ -58,6 +58,8 @@
             for (var w in websites) {
                 if (websites[w]._id === websiteId) {
                     websites[w] = website;
+                    console.log(website);
+                    console.log(websites[w]);
                     return;
                 }
             }
@@ -65,13 +67,18 @@
         }
 
         function deleteWebsite(websiteId) {
+
             var i = 0;
             var index = -1;
             for (var w in websites) {
                 if (websites[w]._id === websiteId) {
+
                     index = i;
+
                 }
+                i++;
             }
+
             if (index > -1) {
                 websites.splice(index, 1);
             }

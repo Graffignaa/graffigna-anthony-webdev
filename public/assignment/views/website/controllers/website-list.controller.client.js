@@ -6,13 +6,41 @@
         .module("WebAppMaker")
         .controller("WebsiteListController", WebsiteListController);
 
-    function WebsiteListController($routeParams, WebsiteService) {
+    function WebsiteListController($location, $routeParams, WebsiteService) {
         var vm = this;
         var uid = $routeParams["uid"];
+
+        vm.goToWebsiteEdit = goToWebsiteEdit;
+        vm.goToWebsitePages = goToWebsitePages;
+        vm.goToSelf = goToSelf;
+        vm.goToNew = goToNew;
+        vm.goToProfile = goToProfile;
+
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(uid);
         }
+
         init();
+
+        function goToWebsiteEdit(website) {
+            $location.url("/user/" + uid + "/website/" + website._id);
+        }
+
+        function goToWebsitePages(website) {
+            $location.url("/user/" + uid + "/website/" + website._id + "/page");
+        }
+
+        function goToSelf() {
+            $location.url("/user/" + uid + "/website");
+        }
+
+        function goToNew() {
+            $location.url("/user/" + uid + "/website/new");
+        }
+
+        function goToProfile() {
+            $location.url(/user/ + uid);
+        }
     }
 
 
