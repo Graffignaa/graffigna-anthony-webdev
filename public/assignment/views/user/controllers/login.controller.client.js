@@ -15,12 +15,24 @@
         init();
 
         function login(user) {
-            user = UserService.findUserByCredentials(user.username, user.password);
-            if(user) {
-                $location.url("/user/" + user._id);
-            } else {
-                vm.errorMessage = "Unable to login";
+            if(!user) {
+                model.errorMessage = "User not found";
+                return;
             }
+            var promise = UserService.findUserByCredentials(user.username, user.password);
+            promise
+                .then(function (response) {
+                    user = response.data;
+                    if(user === null) {
+                        model.errorMessage = "User not found";
+                    } else {
+                        $rootScope.currentUser = user;
+                        $location.url("profile/"+user._id);
+                    }
+                });
+
+
+
         }
 
     }
