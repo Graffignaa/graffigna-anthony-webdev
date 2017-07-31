@@ -16,21 +16,73 @@ app.put("/api/page/:pageId", updatePage);
 app.delete("/api/page/:pageId", deletePage);
 
 function createPage(req, res) {
+    var page = req.body;
+    var websiteId = req.params.websiteId;
+    page.websiteId = websiteId;
+    page._id = (new Date()).getTime() + "";
+
+    pages.push(page);
+    res.json(page);
 
 }
 
 function findAllPagesForWebsite(req, res) {
 
+    var websiteId = req.params.websiteId;
+
+    var sitePages = [];
+
+    for (var p in pages) {
+        if (pages[p].websiteId === websiteId) {
+            sitePages.push(pages[p]);
+        }
+    }
+
+    res.json(sitePages);
+
 }
 
 function findPageById(req, res) {
+
+    for (var p in pages) {
+        if (pages[p]._id === req.params.pageId) {
+            res.json(pages[p]);
+        }
+    }
+    res.sendStatus(404);
 
 }
 
 function updatePage(req, res) {
 
+    var pageId = req.params.pageId;
+    var page = req.body;
+
+    for (var p in pages) {
+        if (pages[p]._id === pageId) {
+            pages[p] = page;
+            res.send(page);
+            return;
+        }
+    }
+    res.sendStatus(404);
+
 }
 
 function deletePage(req, res) {
+
+    var page = req.params.pageId;
+
+    var index = 0;
+    for (var p in pages) {
+        if (pages[p]._id === pageId) {
+            pages.splice(index, 1);
+            res.send(page);
+            return;
+        }
+        index++;
+    }
+    res.sendStatus(404);
+
 
 }
