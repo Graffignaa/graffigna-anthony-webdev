@@ -100,5 +100,6 @@ function deleteUser(req, res) {
         }
         index++;
     }
+    res.sendStatus(404);
 
 }
