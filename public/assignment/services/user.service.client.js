@@ -57,7 +57,7 @@
 
             var url = "/api/user/" + userId;
 
-            return $http.delete(url, user);
+            return $http.delete(url);
 
         }
 
