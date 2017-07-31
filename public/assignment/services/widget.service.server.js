@@ -23,9 +23,9 @@ var widgets = [
 
 app.post("/api/page/:pageId/widget", createWidget);
 app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
-app.get("/api/page/:pageId/widget", findWidgetById);
-app.put("/api/page/:pageId/widget", updateWidget);
-app.delete("/api/page/:pageId/widget", deleteWidget);
+app.get("/api/widget/:widgetId", findWidgetById);
+app.put("/api/widget/:widgetId", updateWidget);
+app.delete("/api/widget/:widgetId", deleteWidget);
 
 function createWidget(req, res) {
     var widget = req.body;
