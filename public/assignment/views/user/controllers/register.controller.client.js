@@ -32,6 +32,8 @@
                     _user = response.data;
                     $location.url("/profile/" + _user._id);
                 });
+
+
         }
 
     }

@@ -12,25 +12,24 @@
         function init() {
 
         }
+
         init();
 
         function login(user) {
-            if(!user) {
+            if (!user) {
                 model.errorMessage = "User not found";
                 return;
             }
-            var promise = UserService.findUserByCredentials(user.username, user.password);
-            promise
+            UserService
+                .findUserByCredentials(user.username, user.password)
                 .then(function (response) {
                     user = response.data;
-                    if(user === null) {
+                    if (user === "0") {
                         model.errorMessage = "User not found";
                     } else {
-                        $rootScope.currentUser = user;
-                        $location.url("profile/"+user._id);
+                        $location.url("user/" + user._id);
                     }
                 });
-
 
 
         }
