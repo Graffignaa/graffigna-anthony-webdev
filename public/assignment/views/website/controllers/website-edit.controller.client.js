@@ -17,7 +17,12 @@
         vm.backToList = backToList;
 
         function init() {
-            vm.website = WebsiteService.findWebsiteById(wid);
+
+            WebsiteService
+                .findWebsiteById(wid)
+                .then(function (response) {
+                    vm.website = response.data;
+                });
         }
 
         init();
