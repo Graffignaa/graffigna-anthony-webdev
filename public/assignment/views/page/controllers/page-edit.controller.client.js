@@ -19,19 +19,29 @@
         vm.backToList = backToList;
 
         function init() {
-            vm.page = PageService.findPageById(pid);
+            PageService
+                .findPageById(pid)
+                .then(function (response) {
+                    vm.page = response.data;
+                })
         }
 
         init();
 
         function updatePage(page) {
-            PageService.updatePage(pid, vm.page);
-            $location.url("/user/" + uid + "/website/" + wid + "/page");
+            PageService
+                .updatePage(pid, page)
+                .then(function () {
+                    $location.url("/user/" + uid + "/website/" + wid + "/page");
+                });
         }
 
         function deletePage() {
-            PageService.deletePage(pid);
-            $location.url("/user/" + uid + "/website/" + wid + "/page");
+            PageService
+                .deletePage(pid)
+                .then(function () {
+                    $location.url("/user/" + uid + "/website/" + wid + "/page");
+                });
         }
 
         function goToProfile() {

@@ -22,9 +22,11 @@
         init();
 
         function createPage() {
-            // console.log(vm.);
-            PageService.createPage(wid, vm.page);
-            $location.url("/user/" + uid + "/website/" + wid + "/page");
+            PageService
+                .createPage(wid, page)
+                .then(function () {
+                    $location.url("/user/" + uid + "/website/" + wid + "/page");
+                });
         }
 
         function goToSelf() {

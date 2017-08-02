@@ -17,8 +17,11 @@
         model.goToProfile = goToProfile;
         model.goToWidgetEdit = goToWidgetEdit;
         function init() {
-            model.hello = "Hello from widgetListController";
-            model.widgets = WidgetService.findWidgetsByPageId(pid);
+            WidgetService
+                .findWidgetsByPageId(pid)
+                .then(function (response) {
+                    model.widgets = response.data;
+                });
         }
 
         init();

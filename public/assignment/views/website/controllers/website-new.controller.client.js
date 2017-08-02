@@ -21,9 +21,13 @@
         init();
 
         function createWebsite() {
-           // console.log(vm.);
-            WebsiteService.createWebsite(uid, vm.website);
-            $location.url("/user/" + uid + "/website");
+
+            WebsiteService
+                .createWebsite(uid, vm.website)
+                .then(function () {
+                    $location.url("/user/" + uid + "/website");
+                });
+
         }
 
         function goToSelf() {

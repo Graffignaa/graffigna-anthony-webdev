@@ -28,14 +28,23 @@
         init();
 
         function updateWebsite(website) {
-            WebsiteService.updateWebsite(wid, vm.website);
-            $location.url("/user/" + uid + "/website");
+            WebsiteService
+                .updateWebsite(wid, website)
+                .then(function () {
+                    console.log("hello");
+                    $location.url("/user/" + uid + "/website");
+                });
+
         }
 
         function deleteWebsite() {
-            WebsiteService.deleteWebsite(wid);
-            $location.url("/user/" + uid + "/website");
+            WebsiteService
+                .deleteWebsite(wid)
+                .then(function () {
+                    $location.url("/user/" + uid + "/website");
+                });
         }
+
         function goToProfile() {
             $location.url(/user/ + uid);
         }
@@ -45,7 +54,7 @@
         }
 
         function backToList() {
-            $location.url("/user/" + uid +"/website/");
+            $location.url("/user/" + uid + "/website/");
         }
 
 

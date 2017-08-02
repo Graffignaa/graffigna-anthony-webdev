@@ -19,8 +19,11 @@
         vm.backToWebsites = backToWebsites;
 
         function init() {
-            vm.pages = PageService.findPagesByWebsiteId(wid);
-            console.log(vm.pages);
+            PageService
+                .findPagesByWebsiteId(wid)
+                .then(function (response) {
+                    vm.pages = response.data;
+                })
         }
 
         init();

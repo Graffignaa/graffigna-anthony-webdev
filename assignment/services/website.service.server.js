@@ -60,7 +60,7 @@ module.exports = function (app) {
         for (var w in websites) {
             if (websites[w]._id === websiteId) {
                 websites[w] = website;
-                res.send(website);
+                res.json(website);
                 return;
             }
         }
@@ -69,7 +69,7 @@ module.exports = function (app) {
     }
 
     function deleteWebsite(req, res) {
-
+        console.log("world");
         var websiteId = req.params.websiteId;
 
         var index = 0;
