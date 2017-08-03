@@ -7,11 +7,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#!/user/:uid/website/:wid/page/:pid/widget/new">Choose Widget</a>
+                <a class="navbar-brand">Choose Widget</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#!/user/:uid/website/:wid/page/:pid/widget"><span
+                    <li><a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"><span
                             class="glyphicon glyphicon-chevron-left"></span>
                         Back to Widget List</a></li>
                 </ul>
@@ -22,13 +22,17 @@
 
         <ul class="list-group">
             <li class="list-group-item">
-                <a href="#!/user/:uid/website/:wid/page/:pid/widget/:wgid">Header</a>
+                <a ng-click="model.createWidget('HEADING')">Header</a>
             </li>
             <li class="list-group-item">
-                <a href="#!/user/:uid/website/:wid/page/:pid/widget/:wgid">Image</a>
+                <a ng-click="model.createWidget('IMAGE')">Image</a>
             </li>
             <li class="list-group-item">
-                <a href="#!/user/:uid/website/:wid/page/:pid/widget/:wgid">YouTube Video</a>
+                <a ng-click="model.createWidget('YOUTUBE')">Youtube Video</a>
+            </li>
+            <li class="list-group-item">
+                <a ng-click="model.createWidget('HTML')">HTML Snippet</a>
+            </li>
         </ul>
 
 

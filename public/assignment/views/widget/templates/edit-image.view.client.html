@@ -1,0 +1,41 @@
+<div class="container-fluid">
+
+    <h1>Edit Image</h1>
+
+    <label for="name">Name</label>
+    <input name="name"
+           ng-model="model.widget.name"
+           placeholder="Name"
+           type="text"
+           class="form-control"
+           id="name"/>
+
+    <label for="text">Text</label>
+    <input name="text"
+           ng-model="model.widget.text"
+           placeholder="Text"
+           type="text"
+           class="form-control"
+           id="text"/>
+
+    <label for="url">URL</label>
+    <input name="url"
+           ng-model="model.widget.url"
+           placeholder="URL"
+           type="url"
+           class="form-control"
+           id="url"/>
+
+    <label for="width">Width</label>
+    <input name="width"
+           ng-model="model.widget.width"
+           placeholder="Width"
+           type="text"
+           class="form-control"
+           id="width"/>
+
+
+    <a class="btn btn-default btn-danger btn-block"
+       ng-click="model.deleteWidget(model.wgid)"
+       role="button">Delete</a>
+</div>

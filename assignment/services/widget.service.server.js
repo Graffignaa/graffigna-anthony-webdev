@@ -57,6 +57,7 @@ module.exports = function (app) {
         for (var w in widgets) {
             if (widgets[w]._id === req.params.widgetId) {
                 res.json(widgets[w]);
+                return;
             }
         }
         res.sendStatus(404);
@@ -72,7 +73,7 @@ module.exports = function (app) {
         for (var w in widgets) {
             if (widgets[w]._id === widgetId) {
                 widgets[w] = widget;
-                res.send(widget);
+                res.json(widget);
                 return;
             }
         }
@@ -82,16 +83,15 @@ module.exports = function (app) {
 
     function deleteWidget(req, res) {
 
-        var widget = req.params.widgetId;
+        var widgetId = req.params.widgetId;
 
-        var index = 0;
         for (var w in widgets) {
             if (widgets[w]._id === widgetId) {
-                widgets.splice(index, 1);
-                res.send(widget);
+                widgets.splice(w, 1);
+                res.sendStatus(200);
                 return;
             }
-            index++;
+
         }
         res.sendStatus(404);
 

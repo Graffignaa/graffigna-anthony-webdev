@@ -21,7 +21,7 @@
         function createWidget(pageId, widget) {
 
             var url = "/api/page/" + pageId + "/widget";
-            $http.post(url, widget);
+            return $http.post(url, widget);
 
 
         }
@@ -29,24 +29,24 @@
         function findWidgetsByPageId(pageId) {
 
             var url = "/api/page/" + pageId + "/widget";
-            $http.get(url);
+            return $http.get(url);
 
         }
 
         function findWidgetById(widgetId) {
 
             var url = "/api/widget/" + widgetId;
-            $http.get(url);
+            return $http.get(url);
         }
 
         function updateWidget(widgetId, widget) {
             var url = "/api/widget/" + widgetId;
-            $http.put(url, widgetId);
+            return $http.put(url, widget);
         }
 
         function deleteWidget(widgetId) {
             var url = "/api/widget/" + widgetId;
-            $http.delete(url);
+            return $http.delete(url);
         }
 
     }
