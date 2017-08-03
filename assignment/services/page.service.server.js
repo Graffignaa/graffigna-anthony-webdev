@@ -62,27 +62,27 @@ module.exports = function (app) {
         for (var p in pages) {
             if (pages[p]._id === pageId) {
                 pages[p] = page;
-                res.send(page);
+                res.json(page);
                 return;
             }
         }
+
         res.sendStatus(404);
 
     }
 
     function deletePage(req, res) {
 
-        var page = req.params.pageId;
+        var pageId = req.params.pageId;
 
-        var index = 0;
         for (var p in pages) {
             if (pages[p]._id === pageId) {
-                pages.splice(index, 1);
-                res.send(page);
+                pages.splice(p, 1);
+                res.sendStatus(200);
                 return;
             }
-            index++;
         }
+
         res.sendStatus(404);
 
 

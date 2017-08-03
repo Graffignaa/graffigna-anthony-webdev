@@ -8,19 +8,24 @@
 
     function PageEditController($location, $routeParams, PageService) {
         var vm = this;
-        var uid = $routeParams["uid"];
-        var wid = $routeParams["wid"];
-        var pid = $routeParams["pid"];
+        vm.uid = $routeParams["uid"];
+        vm.wid = $routeParams["wid"];
+        vm.pid = $routeParams["pid"];
 
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
-        vm.goToProfile = goToProfile;
-        vm.goToSelf = goToSelf;
-        vm.backToList = backToList;
+
 
         function init() {
             PageService
-                .findPageById(pid)
+                .findPagesByWebsiteId(vm.wid)
+                .then(function (response) {
+                    vm.pages = response.data;
+
+                });
+
+            PageService
+                .findPageById(vm.pid)
                 .then(function (response) {
                     vm.page = response.data;
                 })
@@ -30,31 +35,21 @@
 
         function updatePage(page) {
             PageService
-                .updatePage(pid, page)
+                .updatePage(vm.pid, page)
                 .then(function () {
-                    $location.url("/user/" + uid + "/website/" + wid + "/page");
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
                 });
         }
 
         function deletePage() {
             PageService
-                .deletePage(pid)
+                .deletePage(vm.pid)
                 .then(function () {
-                    $location.url("/user/" + uid + "/website/" + wid + "/page");
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
                 });
         }
 
-        function goToProfile() {
-            $location.url(/user/ + uid);
-        }
 
-        function goToSelf() {
-            $location.url("/user/" + uid + "/website/" + wid + "/page/" + pid);
-        }
-
-        function backToList() {
-            $location.url("/user/" + uid + "/website/" + wid + "/page");
-        }
 
 
     }
