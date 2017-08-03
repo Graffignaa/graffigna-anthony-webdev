@@ -8,47 +8,21 @@
 
     function PageListController($location, $routeParams, PageService) {
         var vm = this;
-        var uid = $routeParams["uid"];
-        var wid = $routeParams["wid"];
+        vm.uid = $routeParams["uid"];
+        vm.wid = $routeParams["wid"];
 
-        vm.goToPageEdit = goToPageEdit;
-        vm.goToPageWidgets = goToPageWidgets;
-        vm.goToSelf = goToSelf;
-        vm.goToNew = goToNew;
-        vm.goToProfile = goToProfile;
-        vm.backToWebsites = backToWebsites;
 
         function init() {
-            vm.pages = PageService.findPagesByWebsiteId(wid);
-            console.log(vm.pages);
+            PageService
+                .findPagesByWebsiteId(vm.wid)
+                .then(function (response) {
+                    vm.pages = response.data;
+                })
         }
 
         init();
 
-        function goToPageEdit(page) {
-            $location.url("/user/" + uid + "/website/" + wid + "/page/" + page._id);
-        }
-
-        function goToPageWidgets(page) {
-            console.log(page._id);
-            $location.url("/user/" + uid + "/website/" + wid + "/page/" + page._id + "/widget");
-        }
-
-        function goToSelf() {
-            $location.url("/user/" + uid + "/website/" + wid + "/page");
-        }
-
-        function goToNew() {
-            $location.url("/user/" + uid + "/website/" + wid + "/page/new");
-        }
-
-        function goToProfile() {
-            $location.url(/user/ + uid);
-        }
-
-        function backToWebsites() {
-            $location.url("/user/" + uid + "/website");
-        }
+   
     }
 
 

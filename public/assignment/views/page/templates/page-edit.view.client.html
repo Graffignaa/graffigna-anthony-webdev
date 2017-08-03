@@ -7,11 +7,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ng-click="model.goToSelf()">Edit Page</a>
+                <a class="navbar-brand">Edit Page</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a ng-click="model.updatePage(page)"><span class="glyphicon glyphicon-ok"></span> Finish
+                    <li><a ng-click="model.updatePage(model.page)"><span class="glyphicon glyphicon-ok"></span> Finish
                         Page</a></li>
                 </ul>
             </div>
@@ -28,45 +28,23 @@
                         <div class="row">
                             <div class="col-xs-10">Pages</div>
                             <div class="col-xs-2">
-                                <a href="#!/user/:uid/website/:wid/page/new" style="color:white">
+                                <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/new" style="color:white">
                                     <span class="pull-right glyphicon glyphicon-plus"></span>
                                 </a>
                             </div>
                         </div>
                     </li>
-                    <li class="list-group-item">
+                    <li ng-repeat="page in model.pages" class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10">
-                                <a href="#!/user/:uid/website/:wid/page/:pid/widget">Concert Page</a>
+                                <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget">{{page.name}}</a>
                             </div>
                             <div class="col-xs-2">
-                                <a href="#!/user/:uid/website/:wid/page/:pid"><span
+                                <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}"><span
                                         class="glyphicon glyphicon-cog pull-right"></span></a>
                             </div>
                         </div>
 
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-10">
-                                <a href="#!/user/:uid/website/:wid/page/:pid/widget">Band Page</a>
-                            </div>
-                            <div class="col-xs-2">
-                                <a href="#!/user/:uid/website/:wid/page/:pid"><span
-                                        class="glyphicon glyphicon-cog pull-right"></span></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-10">
-                                <a href="#!/user/:uid/website/:wid/page/:pid/widget">Instrument Page</a>
-                            </div>
-                            <div class="col-xs-2">
-                                <a href="#!/user/:uid/website/:wid/page/:pid"><span
-                                        class="glyphicon glyphicon-cog pull-right"></span></a>
-                            </div>
-                        </div>
                     </li>
                 </ul>
 
@@ -90,7 +68,7 @@
                    ng-click="model.deletePage()"
                    role="button">Delete</a>
                 <a class="btn btn-default btn-info btn-block"
-                   ng-click="model.backToList()"
+                   href="#!/user/{{model.uid}}/website/{{model.wid}}/page"
                    role="button">Cancel</a>
 
 
@@ -103,7 +81,7 @@
         <div class="navbar navbar-inverse navbar-fixed-bottom">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" ng-click="model.goToProfile()"><span
+                    <a class="navbar-brand" href="#!/user/{{model.uid}}"><span
                             class="glyphicon glyphicon-user"/></a>
                 </div>
 

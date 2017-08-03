@@ -7,14 +7,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ng-click="model.goToSelf()">Widgets</a>
+                <a class="navbar-brand">Widgets</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a ng-click="model.backToPage()"><span
+                    <li><a href="#!/user/{{model.uid}}/website/{{model.wid}}/page"><span
                             class="glyphicon glyphicon-chevron-left"></span> Back to
                         Pages</a></li>
-                    <li><a ng-click="model.goToNew()"><span
+                    <li><a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new"><span
                             class="glyphicon glyphicon-plus"></span> Add
                         Widget</a></li>
                 </ul>
@@ -22,11 +22,9 @@
         </div>
     </nav>
     <div class="container-fluid">
-        <h2>Widget List</h2>
 
         <div ng-repeat="widget in model.widgets">
-            <a ng-click="model.goToWidgetEdit(widget._id)">
-
+            <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog pull-right"/>
 
             </a>

@@ -8,31 +8,31 @@
 
     function PageNewController($location, $routeParams, PageService) {
         var vm = this;
-        var uid = $routeParams["uid"];
-        var wid = $routeParams["wid"];
+        vm.uid = $routeParams["uid"];
+        vm.wid = $routeParams["wid"];
 
         vm.createPage = createPage;
-        vm.goToSelf = goToSelf;
-        vm.goToProfile = goToProfile;
+
 
         function init() {
             vm.page = {};
+
+            PageService
+                .findPagesByWebsiteId(vm.wid)
+                .then(function (response) {
+                    vm.pages = response.data;
+
+                });
         }
 
         init();
 
         function createPage() {
-            // console.log(vm.);
-            PageService.createPage(wid, vm.page);
-            $location.url("/user/" + uid + "/website/" + wid + "/page");
-        }
-
-        function goToSelf() {
-            $location.url(/user/ + uid + "/website/" + wid + "/page/new");
-        }
-
-        function goToProfile() {
-            $location.url(/user/ + uid);
+            PageService
+                .createPage(vm.wid, vm.page)
+                .then(function () {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                });
         }
 
 

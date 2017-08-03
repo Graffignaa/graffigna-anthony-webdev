@@ -8,43 +8,48 @@
 
     function PageEditController($location, $routeParams, PageService) {
         var vm = this;
-        var uid = $routeParams["uid"];
-        var wid = $routeParams["wid"];
-        var pid = $routeParams["pid"];
+        vm.uid = $routeParams["uid"];
+        vm.wid = $routeParams["wid"];
+        vm.pid = $routeParams["pid"];
 
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
-        vm.goToProfile = goToProfile;
-        vm.goToSelf = goToSelf;
-        vm.backToList = backToList;
+
 
         function init() {
-            vm.page = PageService.findPageById(pid);
+            PageService
+                .findPagesByWebsiteId(vm.wid)
+                .then(function (response) {
+                    vm.pages = response.data;
+
+                });
+
+            PageService
+                .findPageById(vm.pid)
+                .then(function (response) {
+                    vm.page = response.data;
+                })
         }
 
         init();
 
         function updatePage(page) {
-            PageService.updatePage(pid, vm.page);
-            $location.url("/user/" + uid + "/website/" + wid + "/page");
+            PageService
+                .updatePage(vm.pid, page)
+                .then(function () {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                });
         }
 
         function deletePage() {
-            PageService.deletePage(pid);
-            $location.url("/user/" + uid + "/website/" + wid + "/page");
+            PageService
+                .deletePage(vm.pid)
+                .then(function () {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                });
         }
 
-        function goToProfile() {
-            $location.url(/user/ + uid);
-        }
 
-        function goToSelf() {
-            $location.url("/user/" + uid + "/website/" + wid + "/page/" + pid);
-        }
-
-        function backToList() {
-            $location.url("/user/" + uid + "/website/" + wid + "/page");
-        }
 
 
     }

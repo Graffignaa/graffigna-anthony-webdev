@@ -4,36 +4,43 @@
         .controller("WidgetEditController", WidgetEditController);
 
     function WidgetEditController($sce, $location, WidgetService, $routeParams) {
-        var model = this;
-        var uid = $routeParams["uid"];
-        var wid = $routeParams["wid"];
-        var pid = $routeParams["pid"];
-        var wgid = $routeParams["wgid"];
-        model.trustHtmlContent = trustHtmlContent;
-        model.trustUrlResource = trustUrlResource;
-        model.getWidgetIncludeUrl = getWidgetIncludeUrl;
-        model.createWidget;
+        var vm = this;
+        vm.uid = $routeParams["uid"];
+        vm.wid = $routeParams["wid"];
+        vm.pid = $routeParams["pid"];
+        vm.wgid = $routeParams["wgid"];
+        vm.trustHtmlContent = trustHtmlContent;
+        vm.trustUrlResource = trustUrlResource;
+        vm.getWidgetIncludeUrl = getWidgetIncludeUrl;
+        vm.updateWidget = updateWidget;
+        vm.deleteWidget = deleteWidget;
 
         function init() {
-            model.hello = "Hello from widgetListController";
-            console.log(wgid);
-            model.widget = WidgetService.findWidgetById(wgid);
-
+            WidgetService
+                .findWidgetById(vm.wgid)
+                .then(function (response) {
+                    vm.widget = response.data;
+                });
         }
 
         init();
 
-        function createWidget(widget) {
-            if (!widget._id) {
-                WidgetService.createWidget(pid, widget);
-                console.log("exist");
-            }
-            else {
-                WidgetService.updateWidget(widget._id, widget);
-                console.log("no");
-            }
-            $location.url("/user/" + uid + "/website/" + wid + "/page/" + pid + "/widget")
+        function updateWidget(widget) {
 
+            WidgetService
+                .updateWidget(vm.wgid, widget)
+                .then(function () {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                });
+
+        }
+
+        function deleteWidget() {
+            WidgetService
+                .deleteWidget(vm.wgid)
+                .then(function () {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                });
         }
 
         function trustUrlResource(url) {

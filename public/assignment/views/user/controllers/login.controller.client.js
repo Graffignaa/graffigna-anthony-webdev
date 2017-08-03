@@ -12,15 +12,26 @@
         function init() {
 
         }
+
         init();
 
         function login(user) {
-            user = UserService.findUserByCredentials(user.username, user.password);
-            if(user) {
-                $location.url("/user/" + user._id);
-            } else {
-                vm.errorMessage = "Unable to login";
+            if (!user) {
+                model.errorMessage = "User not found";
+                return;
             }
+            UserService
+                .findUserByCredentials(user.username, user.password)
+                .then(function (response) {
+                    user = response.data;
+                    if (user === "0") {
+                        model.errorMessage = "User not found";
+                    } else {
+                        $location.url("user/" + user._id);
+                    }
+                });
+
+
         }
 
     }

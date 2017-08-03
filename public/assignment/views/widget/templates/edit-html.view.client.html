@@ -1,0 +1,25 @@
+
+<div class="container-fluid">
+
+    <h1>Edit HTML Snippet</h1>
+
+    <label for="name">Name</label>
+    <input name="name"
+           ng-model="model.widget.name"
+           placeholder="Name"
+           type="text"
+           class="form-control"
+           id="name"/>
+
+    <label for="text">Text</label>
+    <input name="text"
+           ng-model="model.widget.text"
+           placeholder="Text"
+           type="text"
+           class="form-control"
+           id="text"/>
+
+    <a class="btn btn-default btn-danger btn-block"
+       ng-click="model.deleteWidget()"
+       role="button">Delete</a>
+</div>

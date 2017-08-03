@@ -8,41 +8,49 @@
 
     function WebsiteEditController($location, $routeParams, WebsiteService) {
         var vm = this;
-        var uid = $routeParams["uid"];
-        var wid = $routeParams["wid"];
+        vm.uid = $routeParams["uid"];
+        vm.wid = $routeParams["wid"];
+
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
-        vm.goToProfile = goToProfile;
-        vm.goToSelf = goToSelf;
-        vm.backToList = backToList;
+
 
         function init() {
-            vm.website = WebsiteService.findWebsiteById(wid);
+
+            //Init this website
+            WebsiteService
+                .findWebsiteById(vm.wid)
+                .then(function (response) {
+                    vm.website = response.data;
+                });
+
+            //Init all websites
+            WebsiteService
+                .findWebsitesByUser(vm.uid)
+                .then(function (response) {
+                    vm.websites = response.data;
+
+                });
         }
 
         init();
 
         function updateWebsite(website) {
-            WebsiteService.updateWebsite(wid, vm.website);
-            $location.url("/user/" + uid + "/website");
+            WebsiteService
+                .updateWebsite(vm.wid, website)
+                .then(function () {
+                    $location.url("/user/" + vm.uid + "/website");
+                });
+
         }
 
         function deleteWebsite() {
-            WebsiteService.deleteWebsite(wid);
-            $location.url("/user/" + uid + "/website");
+            WebsiteService
+                .deleteWebsite(vm.wid)
+                .then(function () {
+                    $location.url("/user/" + vm.uid + "/website");
+                });
         }
-        function goToProfile() {
-            $location.url(/user/ + uid);
-        }
-
-        function goToSelf() {
-            $location.url("/user/" + uid + "/website/" + wid);
-        }
-
-        function backToList() {
-            $location.url("/user/" + uid +"/website/");
-        }
-
 
     }
 
