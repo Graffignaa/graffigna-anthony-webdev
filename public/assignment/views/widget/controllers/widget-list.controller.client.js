@@ -12,6 +12,7 @@
         vm.trustHtmlContent = trustHtmlContent;
         vm.trustUrlResource = trustUrlResource;
         vm.getWidgetIncludeUrl = getWidgetIncludeUrl;
+        vm.sortWidget = sortWidget;
 
         function init() {
             WidgetService
@@ -38,6 +39,10 @@
 
         function getWidgetIncludeUrl(widgetType) {
             return "views/widget/templates/widgets/widget-" + widgetType + ".view.client.html";
+        }
+
+        function sortWidget(initial, final) {
+            WidgetService.sortWidget(vm.pid, initial, final);
         }
     }
 })();

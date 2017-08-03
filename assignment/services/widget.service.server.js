@@ -26,6 +26,29 @@ module.exports = function (app) {
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
 
+    app.put("/page/:pageId/widget?initial=index1&final=index2", sortWidgets);
+
+    function sortWidgets(req, res) {
+        var pid = req.params.pageId;
+        var initial = req.query.initial;
+        var final = req.query.final;
+
+        var pageWidgets = [];
+
+        for (var w in widgets) {
+            if (widgets[w].pageId === pid) {
+                pageWidgets.push(widgets[w]);
+            }
+        }
+
+        var toMove = pageWidgets.splice(initial, 1);
+        pageWidgets.splice(final, 0, toMove[0]);
+        res.sendStatus(200);
+
+
+    }
+
+
     function createWidget(req, res) {
         var widget = req.body;
         var pageId = req.params.pageId;

@@ -23,14 +23,16 @@
     </nav>
     <div class="container-fluid">
 
-        <div ng-repeat="widget in model.widgets">
-            <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
-                <span class="glyphicon glyphicon-cog pull-right"/>
+        <ul style="list-style: none" id="sortable" wbdv-sortable>
+            <li ng-repeat="widget in model.widgets">
+                <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
+                    <span class="glyphicon glyphicon-cog pull-right"/>
 
-            </a>
-            <div ng-include="model.getWidgetIncludeUrl(widget.widgetType)"></div>
+                </a>
+                <div ng-include="model.getWidgetIncludeUrl(widget.widgetType)"></div>
 
-        </div>
+            </li>
+        </ul>
 
 
     </div>
