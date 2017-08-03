@@ -5,9 +5,9 @@
 
     function WidgetListController($sce, $location, WidgetService, $routeParams) {
         var model = this;
-        var uid = $routeParams["uid"];
-        var wid = $routeParams["wid"];
-        var pid = $routeParams["pid"];
+        model.uid = $routeParams["uid"];
+        model.wid = $routeParams["wid"];
+        model.pid = $routeParams["pid"];
         model.trustHtmlContent = trustHtmlContent;
         model.trustUrlResource = trustUrlResource;
         model.getWidgetIncludeUrl = getWidgetIncludeUrl;

@@ -8,15 +8,14 @@
 
     function ProfileController($location, $routeParams, UserService) {
         var vm = this;
-        var uid = $routeParams["uid"];
+        vm.uid = $routeParams["uid"];
 
-        vm.goToWebsites = goToWebsites;
-        vm.goToProfile = goToProfile;
+        vm.updateUser = updateUser;
 
 
         function init() {
 
-            UserService.findUserById(uid)
+            UserService.findUserById(vm.uid)
                 .then(function (response) {
                     vm.user = response.data;
                 });
@@ -24,12 +23,8 @@
 
         init();
 
-        function goToWebsites(user) {
-            $location.url("/user/" + user._id + "/website");
-        }
-
-        function goToProfile(user) {
-            $location.url = "/user/" + user._id;
+        function updateUser(user) {
+            UserService.updateUser(vm.uid, user)
         }
 
 

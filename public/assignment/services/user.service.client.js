@@ -44,7 +44,6 @@
             // /user?username=alice&password=alice
             console.log(url);
             return $http.get(url);
-            console.log("hello");
 
         }
 
