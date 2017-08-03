@@ -8,14 +8,19 @@
 
     function WebsiteNewController($location, $routeParams, WebsiteService) {
         var vm = this;
-        var uid = $routeParams["uid"];
+        vm.uid = $routeParams["uid"];
 
         vm.createWebsite = createWebsite;
-        vm.goToSelf = goToSelf;
-        vm.goToProfile = goToProfile;
 
         function init() {
-           vm.website = {};
+            vm.website = {};
+
+            WebsiteService
+                .findWebsitesByUser(vm.uid)
+                .then(function (response) {
+                    vm.websites = response.data;
+
+                });
         }
 
         init();
@@ -23,19 +28,11 @@
         function createWebsite() {
 
             WebsiteService
-                .createWebsite(uid, vm.website)
+                .createWebsite(vm.uid, vm.website)
                 .then(function () {
-                    $location.url("/user/" + uid + "/website");
+                    $location.url("/user/" + vm.uid + "/website");
                 });
 
-        }
-
-        function goToSelf() {
-            $location.url(/user/ + uid + "/website/new");
-        }
-
-        function goToProfile() {
-            $location.url(/user/ + uid);
         }
 
 

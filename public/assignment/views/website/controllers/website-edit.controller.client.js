@@ -8,20 +8,28 @@
 
     function WebsiteEditController($location, $routeParams, WebsiteService) {
         var vm = this;
-        var uid = $routeParams["uid"];
-        var wid = $routeParams["wid"];
+        vm.uid = $routeParams["uid"];
+        vm.wid = $routeParams["wid"];
+
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
-        vm.goToProfile = goToProfile;
-        vm.goToSelf = goToSelf;
-        vm.backToList = backToList;
+
 
         function init() {
 
+            //Init this website
             WebsiteService
-                .findWebsiteById(wid)
+                .findWebsiteById(vm.wid)
                 .then(function (response) {
                     vm.website = response.data;
+                });
+
+            //Init all websites
+            WebsiteService
+                .findWebsitesByUser(vm.uid)
+                .then(function (response) {
+                    vm.websites = response.data;
+
                 });
         }
 
@@ -29,34 +37,20 @@
 
         function updateWebsite(website) {
             WebsiteService
-                .updateWebsite(wid, website)
+                .updateWebsite(vm.wid, website)
                 .then(function () {
-                    console.log("hello");
-                    $location.url("/user/" + uid + "/website");
+                    $location.url("/user/" + vm.uid + "/website");
                 });
 
         }
 
         function deleteWebsite() {
             WebsiteService
-                .deleteWebsite(wid)
+                .deleteWebsite(vm.wid)
                 .then(function () {
-                    $location.url("/user/" + uid + "/website");
+                    $location.url("/user/" + vm.uid + "/website");
                 });
         }
-
-        function goToProfile() {
-            $location.url(/user/ + uid);
-        }
-
-        function goToSelf() {
-            $location.url("/user/" + uid + "/website/" + wid);
-        }
-
-        function backToList() {
-            $location.url("/user/" + uid + "/website/");
-        }
-
 
     }
 

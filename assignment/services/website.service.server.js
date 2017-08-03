@@ -69,20 +69,16 @@ module.exports = function (app) {
     }
 
     function deleteWebsite(req, res) {
-        console.log("world");
-        var websiteId = req.params.websiteId;
+        var wid = req.params.websiteId;
 
-        var index = 0;
         for (var w in websites) {
-            if (websites[w]._id === websiteId) {
-                websites.splice(index, 1);
-                res.send(user);
+            if (websites[w]._id === wid) {
+                websites.splice(w, 1);
+                res.sendStatus(200);
                 return;
             }
-            index++;
         }
         res.sendStatus(404);
-
     }
 
 };
