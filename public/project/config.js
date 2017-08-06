@@ -6,6 +6,7 @@
         .module("SpotifyReviews")
         .config(Config);
     function Config($routeProvider) {
+        console.log("hello from config");
         $routeProvider
             .when("/", {
                 templateUrl: "views/templates/search.view.client.html",
@@ -13,9 +14,10 @@
                 controllerAs: "model"
             })
             .when("/details/:albumId", {
-                templateUrl: "album-details.view.client.html",
-                controller: "AlbumDetailsController",
+                templateUrl: "views/templates/details.view.client.html",
+                controller: "DetailsController",
                 controllerAs: "model"
             })
+
     }
-});
+})();

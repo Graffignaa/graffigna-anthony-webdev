@@ -4,19 +4,24 @@
 (function () {
     angular
         .module("SpotifyReviews")
-        .controller("SearchController", SearchController);
+        .controller("DetailsController", DetailsController);
 
-    function SearchController($location, $routeParams, SearchService) {
+    function DetailsController($location, $routeParams, DetailsService) {
         var vm = this;
+        var albumId = $routeParams['albumId'];
 
-        vm.albums = [];
+        vm.album = {};
 
-        vm.albumSearch = albumSearch;
 
 
         function init() {
-            vm.queryString = "";
-            console.log("hello");
+
+            DetailsService.getAlbum(albumId)
+                .then(function (response) {
+                    vm.album = response.data;
+                })
+
+
         }
 
         init();
