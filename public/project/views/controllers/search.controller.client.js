@@ -24,7 +24,7 @@
         function albumSearch() {
             SearchService.searchAlbum(vm.queryString)
                 .then(function (response) {
-                    vm.albums = JSON.parse(response.data);
+                    vm.albums = response.data;
                 })
 
 
