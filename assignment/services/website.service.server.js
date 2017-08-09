@@ -50,7 +50,7 @@ module.exports = function (app) {
             .then(function (websiteDoc) {
                 res.json(websiteDoc)
             }, function (err) {
-                res.sendStatus(404).send(err);
+                res.sendStatus(500).send(err);
             })
 
     }

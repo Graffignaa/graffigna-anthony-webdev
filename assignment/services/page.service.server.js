@@ -16,14 +16,19 @@ module.exports = function (app) {
     app.put("/api/page/:pageId", updatePage);
     app.delete("/api/page/:pageId", deletePage);
 
+    var pageModel = require("../model/page/page.model.server");
+
     function createPage(req, res) {
         var page = req.body;
         var websiteId = req.params.websiteId;
-        page.websiteId = websiteId;
-        page._id = (new Date()).getTime() + "";
 
-        pages.push(page);
-        res.json(page);
+        return pageModel
+            .createPage(websiteId, page)
+            .then(function (pageDoc) {
+                res.json(pageDoc);
+            }, function (err) {
+                res.statusCode(500).send(err);
+            })
 
     }
 
@@ -31,26 +36,22 @@ module.exports = function (app) {
 
         var websiteId = req.params.websiteId;
 
-        var sitePages = [];
-
-        for (var p in pages) {
-            if (pages[p].websiteId === websiteId) {
-                sitePages.push(pages[p]);
-            }
-        }
-
-        res.json(sitePages);
-
+        return pageModel
+            .findAllPagesForWebsite(websiteId)
+            .then(function (pages) {
+                res.json(pages);
+            })
     }
 
     function findPageById(req, res) {
 
-        for (var p in pages) {
-            if (pages[p]._id === req.params.pageId) {
-                res.json(pages[p]);
-            }
-        }
-        res.sendStatus(404);
+        return pageModel
+            .findPageById(req.params.pageId)
+            .then(function (pageDoc) {
+                res.json(pageDoc)
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            })
 
     }
 
@@ -59,15 +60,11 @@ module.exports = function (app) {
         var pageId = req.params.pageId;
         var page = req.body;
 
-        for (var p in pages) {
-            if (pages[p]._id === pageId) {
-                pages[p] = page;
-                res.json(page);
-                return;
-            }
-        }
-
-        res.sendStatus(404);
+        return pageModel
+            .updatePage(pageId, page)
+            .then(function (website) {
+                res.json(website);
+            })
 
     }
 
@@ -75,15 +72,11 @@ module.exports = function (app) {
 
         var pageId = req.params.pageId;
 
-        for (var p in pages) {
-            if (pages[p]._id === pageId) {
-                pages.splice(p, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-
-        res.sendStatus(404);
+        pageModel
+            .deletePage(pageId)
+            .then(function (status) {
+                res.json(status);
+            })
 
 
     }
