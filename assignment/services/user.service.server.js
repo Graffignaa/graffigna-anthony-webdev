@@ -89,7 +89,7 @@ module.exports = function (app) {
 
         userModel
             .deleteUser(userId)
-            .then(function () {
+            .then(function (    ) {
                 res.sendStatus(200);
             });
         res.sendStatus(404);
