@@ -22,16 +22,19 @@
             UserService.findUserByUsername(user.username)
                 .then(function (response) {
                     _user = response.data;
-                    if(_user === "0") {
-                        return UserService.createUser(user)
+                    if (_user === "0") {
+                        return UserService
+                            .createUser(user)
+                            .then(function (response) {
+                                _user = response.data;
+                                $location.url("/profile/" + _user._id);
+                            });
+
                     } else {
                         vm.error = "User already exists";
                     }
-                })
-                .then(function (response) {
-                    _user = response.data;
-                    $location.url("/profile/" + _user._id);
-                });
+                }
+        );
 
 
         }

@@ -1,3 +1,1 @@
-/**
- * Created by Anthony on 8/7/2017.
- */
+var db = require("./database");

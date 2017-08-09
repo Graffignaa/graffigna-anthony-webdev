@@ -11,7 +11,7 @@
         vm.uid = $routeParams["uid"];
 
         vm.updateUser = updateUser;
-
+        console.log(vm.user);
 
         function init() {
 
@@ -19,6 +19,7 @@
                 .then(function (response) {
                     vm.user = response.data;
                 });
+
         }
 
         init();
