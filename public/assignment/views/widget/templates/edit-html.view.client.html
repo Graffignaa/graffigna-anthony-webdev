@@ -11,13 +11,9 @@
            class="form-control"
            id="name"/>
 
-    <label for="text">Text</label>
-    <input name="text"
-           ng-model="model.widget.text"
-           placeholder="Text"
-           type="text"
-           class="form-control"
-           id="text"/>
+    <div text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'], ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"
+         ng-model="model.widget.text"></div>
 
     <a class="btn btn-default btn-danger btn-block"
        ng-click="model.deleteWidget()"
