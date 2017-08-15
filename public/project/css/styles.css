@@ -1,0 +1,72 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+loginBtn {
+    color: #2b542c;
+}
+
+.ajg .navbar-default {
+    background-color: #5061a0;
+    border-color: #262d4c;
+}
+
+.ajg .navbar-default .navbar-brand {
+    color: white;
+}
+
+.ajg .navbar-default .navbar-collapse {
+    color: white;
+}
+
+.ajg .nav.navbar-nav.navbar-right li a {
+    color: white;
+}
+
+.ajg .list-group .list-group-item {
+    text-align: center;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+.ajg .ajg-split-view-left {
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    z-index: 1;
+    overflow-y: scroll;
+}
+
+@media (min-width: 1000px) {
+    .col-lg-9.ajg-split-view-right {
+        width: 75%;
+        position: absolute;
+        right: 0px;
+        overflow-y: scroll;
+        top: 60px;
+        bottom: 0px;
+    }
+}
+
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+

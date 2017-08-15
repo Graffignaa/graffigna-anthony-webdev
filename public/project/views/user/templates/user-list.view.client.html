@@ -1,0 +1,8 @@
+<div class="container-fluid" ng-controller="UserListController">
+
+    <div ng-repeat="user in model.users">
+        <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
+    </div>
+
+
+</div>

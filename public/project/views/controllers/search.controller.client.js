@@ -9,6 +9,8 @@
     function SearchController($location, $routeParams, SearchService) {
         var vm = this;
 
+        vm.loggedInId = $routeParams["loggedIn"];
+
         vm.albums = [];
 
         vm.albumSearch = albumSearch;
@@ -24,7 +26,8 @@
         function albumSearch() {
             SearchService.searchAlbum(vm.queryString)
                 .then(function (response) {
-                    vm.albums = response.data;
+                    vm.albums = response.data.albums.items;
+                    console.log(vm.albums);
                 })
 
 

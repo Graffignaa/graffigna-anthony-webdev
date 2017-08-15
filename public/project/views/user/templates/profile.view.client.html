@@ -1,0 +1,128 @@
+<div class="ajg ajg-profile" ng-controller="ProfileController">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">Profile</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <div ng-show="model.ownProfile">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li><a ng-click="model.updateUser(model.thisUser)"><span class="glyphicon glyphicon-ok"></span></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div ng-show="model.ownProfile">
+        <div class="container-fluid">
+            <label for="username">Username</label>
+            <input name="username"
+                   ng-model="model.thisUser.username"
+                   readonly
+                   type="text"
+                   class="form-control"
+                   id="username">
+
+            <label for="email">Email</label>
+            <input name="email"
+                   ng-model="model.thisUser.email"
+                   type="email"
+                   class="form-control"
+                   id="email">
+
+            <label for="name">Name</label>
+            <input name="name"
+                   ng-model="model.thisUser.name"
+                   type="text"
+                   class="form-control"
+                   id="name">
+            <a class="btn btn-default btn-block btn-danger"
+               href="#!/login"
+               role="button">Logout</a>
+        </div>
+    </div>
+
+    <div ng-show="!model.ownProfile">
+        <div class="container-fluid">
+            <label for="username1">Username</label>
+            <input name="username"
+                   ng-model="model.thisUser.username"
+                   readonly
+                   type="text"
+                   class="form-control"
+                   id="username1">
+            <label for="name1">Name</label>
+            <input name="name"
+                   ng-model="model.thisUser.name"
+                   readonly
+                   type="text"
+                   class="form-control"
+                   id="name1">
+            <div ng-show="model.followingUser">
+                <!-- unfollow button -->
+                <a class="btn btn-default btn-block btn-danger"
+                   ng-click="model.unfollowUser()"
+                   role="button">Unfollow</a>
+            </div>
+
+            <div ng-hide="model.followingUser">
+                <a class="btn btn-default btn-block btn-success"
+                   ng-click="model.followUser()"
+                   role="button">Follow</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <h2 ng-show="model.thisUserFollowers.length > 0">Followers</h2>
+        <ul>
+            <li ng-repeat="user in model.thisUserFollowers">
+                <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
+            </li>
+        </ul>
+
+        <h2 ng-show="model.thisUserFollowing.length > 0">Following</h2>
+        <ul>
+        </ul>
+        <li ng-repeat="user in model.thisUserFollowing">
+            <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
+        </li>
+        </ul>
+        <h2 ng-show="model.thisUserFavorites.length > 0">Favorites</h2>
+        <ul>
+            <li ng-repeat="media in model.thisUserFavorites">
+                <a href="#!/{{model.loggedInId}}/details/{{media.id}}">{{media.name}}</a>
+            </li>
+        </ul>
+    </div>
+
+    <a href="#!/{{model.loggedInId}}/user">See All Users</a>
+
+    <!-- Footer To Profile -->
+    <footer>
+        <div class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#!/{{model.loggedInId}}/user/{{model.loggedInId}}"><span
+                            class="glyphicon glyphicon-user"/></a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+
+

@@ -12,13 +12,14 @@
             "searchAlbum": searchAlbum
         };
 
-        var accessToken = "BQCmjL6W5kEA3ze6tY6zOZYyTpuif-_1CqtUQCUBXjIog7cpeUXKi-uyiwaT4BWC2zmNFSFuyV35dsN5pwzfPbfBpkdQ72fQ60NcQ1oVJhas38mVnUUnAIBYpZiUz7qj_-QDmZ41P7k";
+        var accessToken = "BQDvIgJPwwD5WSBl1Qp_bCbByao6HHJBVrOc9bd0fvmUbObRaQ1T4DBKzrz-5Us3LNJ229XL9QwQDeZgvmYmYocCevv0bhyDDqDcf3JN6Xi5HbCtgeX02aMX-LUCDyO9eg71I3kChr4";
         return api;
 
         function searchAlbum(queryString) {
 
             var url = "https://api.spotify.com/v1/search?q=" + queryString + "&type=album";
 
+            console.log("search");
             return $http.get(url, {
                 headers: {
                     'Authorization': 'Bearer ' + accessToken

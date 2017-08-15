@@ -8,7 +8,7 @@
     </form>
     <div id="results">
         <div ng-repeat="album in model.albums">
-            {{album}}
+            <a href="#!/{{model.loggedInId}}/details/{{album.id}}" {{album.name}}>{{album.name}}</a>
         </div>
 
     </div>

@@ -6,19 +6,38 @@
         .module("SpotifyReviews")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($location, $routeParams, DetailsService) {
+    function DetailsController($location, $routeParams, DetailsService, UserService, $route) {
         var vm = this;
         var albumId = $routeParams['albumId'];
+        var loggedInId = $routeParams['loggedIn'];
 
-        vm.album = {};
+        vm.favorited = false;
 
+        vm.favorite = favorite;
+        vm.unfavorite = unfavorite;
+
+        vm.album = [];
 
 
         function init() {
 
             DetailsService.getAlbum(albumId)
                 .then(function (response) {
+                    console.log(response.data.name);
                     vm.album = response.data;
+                    console.log(vm.album);
+                });
+
+            UserService
+                .findUserById(loggedInId)
+                .then(function (response) {
+                    vm.loggedInUser = response.data;
+
+                    if (vm.loggedInUser.favorites.indexOf(albumId) !== -1) {
+                        vm.favorited = true;
+                    }
+
+
                 })
 
 
@@ -26,13 +45,19 @@
 
         init();
 
-        function albumSearch() {
-            SearchService.searchAlbum(vm.queryString)
+        function favorite() {
+            UserService
+                .favorite(loggedInId, vm.album)
                 .then(function (response) {
-                    vm.albums = JSON.parse(response.data);
+                    $route.reload();
                 })
-
-
+        }
+        function unfavorite() {
+            UserService
+                .unfavorite(loggedInId, vm.album)
+                .then(function (response) {
+                    $route.reload();
+                })
         }
 
 
