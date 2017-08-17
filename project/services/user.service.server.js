@@ -2,6 +2,9 @@
  * Created by Anthony on 8/12/2017.
  */
 module.exports = function (app) {
+
+    var userModel = require("../models/user/user.model.server");
+
     var users = [
         {
             "_id": "123",
@@ -51,30 +54,27 @@ module.exports = function (app) {
         var userId = req.params.uid;
         var favId = req.body.url.substring(29, req.body.url.length - 1); //ID of person being favorited
 
-        console.log(favId);
-
-        var user = findByIdInternal(userId);
-        user.favoritePlanets.push(favId);
-
-        res.json(user);
-        return user;
-
+        userModel
+            .addFavoritePlanet(userId, favId)
+            .then(function (status) {
+                res.json(status);
+            }, function (err) {
+                res.status(500).send(err);
+            })
     }
 
 
     function removeFavoritePlanet(req, res) {
         var userId = req.params.uid;
         var favId = req.body.url.substring(29, req.body.url.length - 1); //ID of person being favorited
-        var user = findByIdInternal(userId);
 
-        for (var f in user.favoritePlanets) {
-            if (user.favoritePlanets[f] === favId) {
-                user.favoritePlanets.splice(+f, 1);
-                res.json(200);
-                return user;
-            }
-        }
-        res.json(404);
+        userModel
+            .removeFavoritePlanet(userId, favId)
+            .then(function (status) {
+                res.json(status);
+            }, function (err) {
+                res.status(500).send(err);
+            })
 
 
     }
@@ -84,15 +84,13 @@ module.exports = function (app) {
         var userId = req.params.uid;
         var favId = req.body.url.substring(28, req.body.url.length - 1); //ID of person being favorited
 
-        console.log(favId);
-
-        var user = findByIdInternal(userId);
-        user.favoritePeople.push(favId);
-
-        console.log(user.favoritePeople);
-
-        res.json(user);
-        return user;
+        userModel
+            .addFavoritePerson(userId, favId)
+            .then(function (status) {
+                res.json(status);
+            }, function (err) {
+                res.status(500).send(err);
+            })
 
     }
 
@@ -101,16 +99,13 @@ module.exports = function (app) {
         var userId = req.params.uid;
         var favId = req.body.url.substring(28, req.body.url.length - 1); //ID of person being favorited
 
-        var user = findByIdInternal(userId);
-
-        for (var f in user.favoritePeople) {
-            if (user.favoritePeople[f] === favId) {
-                user.favoritePeople.splice(+f, 1);
-                res.json(200);
-                return user;
-            }
-        }
-        res.json(404);
+        userModel
+            .removeFavoritePerson(userId, favId)
+            .then(function (status) {
+                res.json(status);
+            }, function (err) {
+                res.status(500).send(err);
+            })
 
 
     }
@@ -120,17 +115,14 @@ module.exports = function (app) {
         var followerId = req.body;
 
 
-        var thisUser = findByIdInternal(thisUserId);
-        var follower = findByIdInternal(followerId._id);
-
-        if (thisUser && follower) {
-            thisUser.followers.push(follower._id);
-            follower.following.push(thisUserId);
-            console.log(follower.following);
-            res.json(200);
-            return thisUser;
-        }
-        res.json(404);
+        userModel
+            .followUser(thisUserId, followerId)
+            .then(function (status) {
+                res.json(status);
+            }, function (err) {
+                res.status(500).send(err);
+                return;
+            });
 
 
     }
@@ -138,75 +130,74 @@ module.exports = function (app) {
     function unfollowUser(req, res) {
 
         var thisUserId = req.params.uid;
-        var follower = findByIdInternal(req.body._id);
+        var followerId = req.body._id;
 
-        var thisUser = findByIdInternal(thisUserId);
+        userModel
+            .unfollowUser(thisUserId, followerId)
+            .then(function (status) {
+                res.json(status);
+            }, function (err) {
+                res.status(500).send(err);
+                return;
+            })
 
 
-        if (thisUser && follower) {
-            var removedFollower = false;
-            var removedFollowing = false;
-            for (var f in thisUser.followers) {
-                if (thisUser.followers[f] === follower._id) {
-                    thisUser.followers.splice(+f, 1);
-                    removedFollower = true;
-                    console.log("removedFollower");
-                }
-            }
-
-            console.log("this:" + thisUser._id);
-            for (var v in follower.following) {
-                console.log("f.f:" + follower.following[v]);
-                if (follower.following[v] === thisUser._id) {
-                    follower.following.splice(+v, 1);
-                    removedFollowing = true;
-                    console.log(follower.following);
-                }
-            }
-
-            if (removedFollower && removedFollowing) {
-                console.log("flag2");
-                res.json(200);
-                return thisUser;
-            }
-        }
-        res.json(404);
-
-    }
-
-    function findByIdInternal(uid) {
-        for (var u in users) {
-            if (users[u]._id === uid) {
-                return users[u];
-            }
-        }
-        return null;
     }
 
     function createUser(req, res) {
 
         var user = req.body;
-        user._id = (new Date()).getTime() + "";
-        users.push(user);
-        res.json(user);
+        user.role = "user"
+
+        userModel
+            .createUser(user)
+            .then(function (user) {
+                    res.json(user);
+                },
+                function (err) {
+                    res.json(err);
+                })
+
 
     }
 
     function getAllUsers(req, res) {
-        res.json(users);
-        return users;
+        userModel
+            .getAllUsers()
+            .then(function (users) {
+                res.json(users);
+            }, function (err) {
+                res.status(500).send(err);
+                return;
+            });
     }
 
     function findUserById(req, res) {
         var id = req.params.userId;
-        for (var u in users) {
-            if (users[u]._id === id) {
-                res.json(users[u]);
-                return users[u];
-            }
-        }
-        res.json(404);
+
+        userModel
+            .findUserById(id)
+            .then(function (user) {
+                res.json(user);
+            }, function (err) {
+                res.status(500).send(err);
+            });
+
     }
+
+    function updateUser(req, res) {
+        var user = req.body;
+        var id = req.params.userId;
+
+        userModel
+            .updateUser(id, user)
+            .then(function (status) {
+                res.json(status);
+            }, function (err) {
+                res.sendStatus(404).send(err);
+            });
+    }
+
 
     function findUser(req, res) {
         var username = req.query.username;
@@ -214,50 +205,52 @@ module.exports = function (app) {
 
 
         if (password) {
-            console.log("pass");
-            for (var u in users) {
-                console.log("U/P: " + users[u].username + "," + users[u].password);
-                if (users[u].username === username && users[u].password === password) {
-                    console.log("flag");
-                    res.json(users[u]);
-                    return users[u];
-                }
-            }
+
+            userModel
+                .findUserByCredentials(username, password)
+                .then(function (user) {
+                    if (user === null) {
+                        res.send("0");
+                        return;
+                    }
+                    res.json(user);
+                    return;
+                }, function (err) {
+                    res.sendStatus(404).send(err);
+                })
+
         }
         else {
-            for (var u in users) {
-                if (users[u].username === username) {
-                    res.json(users[u]);
-                    return users[u];
-                }
-            }
+            userModel
+                .findUserByUsername(username)
+                .then(function (user) {
+                    if (user === null) {
+                        res.send("0");
+                        return;
+                    }
+                    res.json(user);
+                    return;
+                }, function (err) {
+                    res.status(500).send(err);
+                    return;
+                });
+            return;
         }
-        res.json(404);
+        res.json("0");
     }
 
-    function updateUser(req, res) {
-        var user = req.body;
-        var id = req.params.userId;
-
-        for (var u in users) {
-            if (users[u]._id === id) {
-                users[u] = user;
-                res.json(user);
-                return user;
-            }
-        }
-        res.json(404);
-    }
 
     function deleteUser(req, res) {
         var id = req.params.userId;
-        for (var u in users) {
-            if (users[u]._id === id) {
-                users.splice(u, 1);
-                res.json(200);
-            }
-        }
-        res.json(404);
+
+        userModel
+            .deleteUser(id)
+            .then(function (status) {
+                res.sendStatus(200);
+            }, function (err) {
+                res.status(500).send(err);
+                return;
+            });
     }
 
 
