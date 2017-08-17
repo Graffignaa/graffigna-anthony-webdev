@@ -2,7 +2,6 @@
  * Created by Anthony on 8/12/2017.
  */
 module.exports = function (app) {
-    console.log("hello from server");
     var users = [
         {
             "_id": "123",
@@ -39,8 +38,6 @@ module.exports = function (app) {
     app.put("/api/user/follow/:uid", followUser);
     app.put("/api/user/unfollow/:uid", unfollowUser);
 
-    app.put("/api/user/favorite/:uid", addFavorite);
-    app.put("/api/user/unfavorite/:uid", removeFavorite);
 
     function addFavorite(req, res) {
 
@@ -100,7 +97,7 @@ module.exports = function (app) {
     function unfollowUser(req, res) {
 
         var thisUserId = req.params.uid;
-        var follower = req.body;
+        var follower = findByIdInternal(req.body._id);
 
         var thisUser = findByIdInternal(thisUserId);
 
@@ -116,11 +113,13 @@ module.exports = function (app) {
                 }
             }
 
+            console.log("this:" + thisUser._id);
             for (var v in follower.following) {
-                if (follower.following[v]._id === thisUser._id) {
+                console.log("f.f:" + follower.following[v]);
+                if (follower.following[v] === thisUser._id) {
                     follower.following.splice(+v, 1);
                     removedFollowing = true;
-                    console.log("removedFollowing");
+                    console.log(follower.following);
                 }
             }
 

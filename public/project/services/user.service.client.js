@@ -5,7 +5,7 @@
 
 (function () {
     angular
-        .module("SpotifyReviews")
+        .module("StarBook")
         .factory("UserService", UserService);
     function UserService($http) {
 
@@ -18,27 +18,10 @@
             "deleteUser": deleteUser,
             "followUser": followUser,
             "unfollowUser": unfollowUser,
-            "getAllUsers": getAllUsers,
-            "favorite": favorite,
-            "unfavorite": unfavorite
+            "getAllUsers": getAllUsers
         };
         return api;
 
-        function favorite(userId, album) {
-
-            var url = "/api/user/favorite/" + userId;
-            console.log(url);
-            return $http.put(url, album);
-
-        }
-
-        function unfavorite(userId, album) {
-
-            var url = "/api/user/unfavorite/" + userId;
-
-            return $http.put(url, album);
-
-        }
 
         function getAllUsers() {
             return $http.get("/api/user/all");

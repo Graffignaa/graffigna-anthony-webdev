@@ -1,0 +1,83 @@
+<div class="ajg ajg-profile" ng-controller="PersonController">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">{{model.person.name}}</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <label for="name">Name</label>
+        <input name="name"
+               ng-model="model.person.name"
+               readonly
+               type="text"
+               class="form-control"
+               id="name">
+
+        <label for="birth_year">Year of Birth</label>
+        <input name="birth_year"
+               ng-model="model.person.birth_year"
+               readonly
+               type="text"
+               class="form-control"
+               id="birth_year">
+
+        <label for="eye_color">Eye Color</label>
+        <input name="eye_color"
+               ng-model="model.person.eye_color"
+               readonly
+               type="text"
+               class="form-control"
+               id="eye_color">
+
+        <label for="hair_color">Hair Color</label>
+        <input name="hair_color"
+               ng-model="model.person.hair_color"
+               readonly
+               type="text"
+               class="form-control"
+               id="hair_color">
+
+        <label for="species">Species</label>
+        <input name="species"
+               ng-model="model.species.name"
+               readonly
+               type="text"
+               class="form-control"
+               id="species">
+
+        <label for="planet">Home Planet</label>
+        <a href="#!/{{model.loggedInId}}/planet/{{model.planetId}}">
+            <input name="planet"
+                   ng-model="model.planet.name"
+                   readonly
+                   type="text"
+                   class="form-control"
+                   id="planet">
+        </a>
+
+
+    </div>
+
+
+    <!-- Footer To Profile -->
+    <footer>
+        <div class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#!/{{model.loggedInId}}/user/{{model.loggedInId}}"><span
+                            class="glyphicon glyphicon-user"/></a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+
+

@@ -1,7 +1,7 @@
 (function () {
 
     angular
-        .module("SpotifyReviews")
+        .module("StarBook")
         .controller("LoginController", LoginController);
 
     function LoginController($location, UserService, $rootScope) {

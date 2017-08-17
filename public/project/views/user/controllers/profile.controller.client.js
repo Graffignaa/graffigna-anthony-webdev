@@ -3,10 +3,10 @@
  */
 (function () {
     angular
-        .module("SpotifyReviews")
+        .module("StarBook")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($location, $routeParams, UserService, DetailsService, $route) {
+    function ProfileController($location, $routeParams, UserService, $route) {
         var vm = this;
         vm.uid = $routeParams["userId"];
         vm.loggedInId = $routeParams["loggedIn"];
@@ -52,17 +52,6 @@
                         vm.thisUserFollowing = ufollowing;
 
 
-                        var ufavorites = [];
-                        for (var z in vm.thisUser.favorites) {
-                            DetailsService
-                                .getAlbum(vm.thisUser.favorites[z])
-                                .then(function (response) {
-                                    ufavorites.push(response.data);
-                                })
-                        }
-                        vm.thisUserFavorites = ufavorites;
-
-
                     })
             }
             //If this is someone else's profile
@@ -95,16 +84,6 @@
                         vm.thisUserFollowers = ufollowers;
                         vm.thisUserFollowing = ufollowing;
 
-                        var ufavorites = [];
-                        for (var z in vm.thisUser.favorites) {
-                            DetailService
-                                .getAlbum(vm.thisUser.favorites[z])
-                                .then(function (response) {
-                                    ufavorites.push(response.data);
-                                })
-                        }
-                        vm.thisUserFavorites = ufavorites;
-
 
                         vm.followingUser = false;
                         for (var v in vm.thisUser.followers) {
@@ -131,7 +110,11 @@
         init();
 
         function updateUser(user) {
-            UserService.updateUser(vm.uid, user)
+            UserService
+                .updateUser(vm.uid, user)
+                .then(function (response) {
+                    $route.reload();
+                });
         }
 
         //Makes the logged in user follow the user whose page we're on.

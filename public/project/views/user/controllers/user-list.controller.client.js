@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module("SpotifyReviews")
+        .module("StarBook")
         .controller("UserListController", UserListController);
 
     function UserListController($location, $routeParams, UserService, $route) {

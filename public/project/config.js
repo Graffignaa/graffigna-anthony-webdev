@@ -3,10 +3,9 @@
  */
 (function () {
     angular
-        .module("SpotifyReviews")
+        .module("StarBook")
         .config(Config);
     function Config($routeProvider) {
-        console.log("hello from config");
         $routeProvider
             .when("/login", {
                 templateUrl: "views/user/templates/login.view.client.html",
@@ -32,16 +31,26 @@
                 controllerAs: "model"
             })
 
-            .when("/:loggedIn/details/:albumId", {
-                templateUrl: "views/templates/details.view.client.html",
-                controller: "DetailsController",
+            .when("/:loggedIn/search", {
+                templateUrl: "views/swapi/templates/search.view.client.html",
+                controller: "SearchController",
                 controllerAs: "model"
             })
 
-            .when("/:loggedIn/search", {
-                templateUrl: "views/templates/search.view.client.html",
-                controller: "SearchController",
+            .when("/:loggedIn/person/:id", {
+                templateUrl: "views/swapi/templates/person.view.client.html",
+                controller: "PersonController",
                 controllerAs: "model"
+            })
+
+            .when("/:loggedIn/planet/:id", {
+                templateUrl: "views/swapi/templates/planet.view.client.html",
+                controller: "PlanetController",
+                controllerAs: "model"
+            })
+
+            .when("/", {
+                templateUrl: "views/home/home.view.client.html"
             })
 
 

@@ -1,0 +1,73 @@
+<div class="ajg ajg-profile" ng-controller="ProfileController">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Search</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid" ng-controller="SearchController">
+
+
+        <ul class="list-group">
+
+            <li class="list-group-item">
+                <label for="people">Search People</label>
+                <input name="people"
+                       ng-model="model.peopleSearch"
+                       placeholder="Anakin Skywalker"
+                       type="text"
+                       class="form-control"
+                       id="people">
+                <a class="btn btn-default btn-block btn-info" ng-click="model.searchPerson()" role="button">Search</a>
+            </li>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="person in model.people">
+                    <a href="#!/{{model.loggedInId}}/person/{{person.url.substring(28, (person.url.length - 1))}}">{{person.name}}</a>
+                </li>
+            </ul>
+
+            <li class="list-group-item">
+                <label for="planets">Search Planets</label>
+                <input name="planets"
+                       ng-model="model.planetSearch"
+                       placeholder="Tatooine"
+                       type="text"
+                       class="form-control"
+                       id="planets">
+                <a class="btn btn-default btn-block btn-info" ng-click="model.searchPlanet()" role="button">Search</a>
+
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="planet in model.planets">
+                        <a href="#!/{{model.loggedInId}}/planet/{{planet.url.substring(29, (planet.url.length - 1))}}">{{planet.name}}</a>
+                    </li>
+                </ul>
+
+            </li>
+
+
+            <div ng-repeat="user in model.users">
+                <li class="list-group-item">
+                    <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
+                </li>
+            </div>
+
+        </ul>
+
+    </div>
+    <footer>
+        <div class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#!/{{model.loggedInId}}/user/{{model.loggedInId}}"><span
+                            class="glyphicon glyphicon-user"/></a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+</div>

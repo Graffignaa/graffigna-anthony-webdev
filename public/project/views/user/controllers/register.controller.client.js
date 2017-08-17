@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module("SpotifyReviews")
+        .module("StarBook")
         .controller("RegisterController", RegisterController);
 
     function RegisterController($location, $routeParams, UserService) {

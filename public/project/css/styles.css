@@ -8,8 +8,8 @@ loginBtn {
 }
 
 .ajg .navbar-default {
-    background-color: #5061a0;
-    border-color: #262d4c;
+    background-color: #761c19;
+    border-color: #761c19;
 }
 
 .ajg .navbar-default .navbar-brand {
@@ -61,6 +61,7 @@ loginBtn {
     padding-bottom: 56.25%; /* 16:9 */
     height: 0;
 }
+
 .youtube-widget iframe {
     position: absolute;
     top: 0;
