@@ -6,11 +6,14 @@
         .module("StarBook")
         .controller("PlanetController", PlanetController);
 
-    function PlanetController($location, $routeParams, SwapiService, $route) {
+    function PlanetController($location, $routeParams, UserService, SwapiService, $route) {
         var vm = this;
 
         vm.loggedInId = $routeParams["loggedIn"];
         vm.planetId = $routeParams["id"];
+
+        vm.favorite = favorite;
+        vm.unfavorite = unfavorite;
 
 
         function init() {
@@ -39,6 +42,22 @@
                     }
                     console.log(vm.films);
 
+                    vm.favorited = false;
+
+                    UserService
+                        .findUserById(vm.loggedInId)
+                        .then(function (response) {
+                            vm.loggedInUser = response.data;
+
+
+                            for (var i in vm.loggedInUser.favoritePlanets) {
+                                if (vm.loggedInUser.favoritePlanets[i] === vm.personId) {
+                                    vm.favorited = true;
+                                }
+                            }
+                            console.log(vm.favorited);
+                        });
+
 
                 });
 
@@ -48,7 +67,21 @@
         init();
 
 
+        function favorite() {
+            UserService
+                .addFavoritePlanet(vm.loggedInId, vm.person)
+                .then(function (response) {
+                    $route.reload();
+                })
+        }
 
+        function unfavorite() {
+            UserService
+                .removeFavoritePlanet(vm.loggedInId, vm.person)
+                .then(function (response) {
+                    $route.reload();
+                })
+        }
 
     }
 

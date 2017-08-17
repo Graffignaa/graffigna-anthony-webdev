@@ -2,7 +2,23 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand">{{model.planet.name}}</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#!/{{model.loggedInId}}/search"><span class="glyphicon glyphicon-search"></span>
+                            Back To Search
+                        </a>
+                    </li>
+
+                </ul>
+
             </div>
 
         </div>
@@ -10,6 +26,15 @@
 
 
     <div class="container-fluid">
+
+        <div ng-hide="model.favorited">
+            <a class="btn btn-default btn-info" ng-click="model.favorite()">Favorite</a>
+        </div>
+
+        <div ng-show="model.favorited">
+            <a class="btn btn-default btn-danger" ng-click="model.unfavorite()">Unfavorite</a>
+        </div>
+
         <label for="name">Name</label>
         <input name="name"
                ng-model="model.planet.name"
@@ -43,26 +68,29 @@
                class="form-control"
                id="population">
 
-        <label for="inhabitants">Notable Inhabitants</label>
-        <div id="inhabitants" ng-repeat="inhabitant in model.inhabitants">
-            <a href="#!/{{model.loggedInId}}/person/{{inhabitant.url.substring(28, (inhabitant.url.length - 1))}}">
-                <input name="inhabitant"
-                       value="{{inhabitant.name}}"
+        <div ng-show="model.inhabitants.length > 0">
+            <label for="inhabitants">Notable Inhabitants</label>
+            <div id="inhabitants" ng-repeat="inhabitant in model.inhabitants">
+                <a href="#!/{{model.loggedInId}}/person/{{inhabitant.url.substring(28, (inhabitant.url.length - 1))}}">
+                    <input name="inhabitant"
+                           value="{{inhabitant.name}}"
+                           readonly
+                           type="text"
+                           class="form-control">
+                </a>
+            </div>
+        </div>
+
+        <div ng-show="model.films.length > 0">
+            <label for="films">Appeared In</label>
+            <div id="films" ng-repeat="film in model.films">
+                <input name="film"
+                       value="{{film.title}}"
                        readonly
                        type="text"
                        class="form-control">
-            </a>
+            </div>
         </div>
-
-        <label for="films">Appeared In</label>
-        <div id="films" ng-repeat="film in model.films">
-            <input name="film"
-                   value="{{film.title}}"
-                   readonly
-                   type="text"
-                   class="form-control">
-        </div>
-
 
     </div>
 

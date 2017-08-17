@@ -28,26 +28,28 @@
         return api;
 
 
-        function addFavoritePerson(uid, personId) {
+        function addFavoritePerson(uid, person) {
 
             var url = "/api/person/favorite/" + uid;
-            return $http.put(url, personId);
+            console.log(url);
+
+            return $http.put(url, person);
 
         }
 
-        function removeFavoritePerson(uid, personId) {
+        function removeFavoritePerson(uid, person) {
             var url = "/api/person/unfavorite/" + uid;
-            return $http.put(url, personId);
+            return $http.put(url, person);
         }
 
-        function addFavoritePlanet(uid, planetId) {
+        function addFavoritePlanet(uid, planet) {
             var url = "/api/planet/favorite/" + uid;
-            return $http.put(url, planetId);
+            return $http.put(url, planet);
         }
 
         function removeFavoritePlanet(uid, planetId) {
             var url = "/api/planet/unfavorite/" + uid;
-            return $http.put(url, planetId);
+            return $http.put(url, planet);
         }
 
         function getAllUsers() {

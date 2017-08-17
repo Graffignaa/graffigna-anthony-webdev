@@ -6,7 +6,7 @@
         .module("StarBook")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($location, $routeParams, UserService, $route) {
+    function ProfileController($location, $routeParams, UserService, SwapiService, $route) {
         var vm = this;
         vm.uid = $routeParams["userId"];
         vm.loggedInId = $routeParams["loggedIn"];
@@ -51,6 +51,26 @@
                         vm.thisUserFollowers = ufollowers;
                         vm.thisUserFollowing = ufollowing;
 
+                        var ufavoritePeople = [];
+                        for (var x in vm.thisUser.favoritePeople) {
+                            SwapiService
+                                .getPersonById(vm.thisUser.favoritePeople[x])
+                                .then(function (response) {
+                                    ufavoritePeople.push(response.data);
+                                })
+                        }
+                        var ufavoritePlanets = [];
+                        for (var x in vm.thisUser.favoritePlanets) {
+                            SwapiService
+                                .getPlanetById(vm.thisUser.favoritePlanets[x])
+                                .then(function (response) {
+                                    ufavoritePlanets.push(response.data);
+                                })
+                        }
+
+                        vm.thisUserFavoritePeople = ufavoritePeople;
+                        vm.thisUserFavoritePlanets = ufavoritePlanets;
+
 
                     })
             }
@@ -84,6 +104,25 @@
                         vm.thisUserFollowers = ufollowers;
                         vm.thisUserFollowing = ufollowing;
 
+                        var ufavoritePeople = [];
+                        for (var x in vm.thisUser.favoritePeople) {
+                            SwapiService
+                                .getPersonById(vm.thisUser.favoritePeople[x])
+                                .then(function (response) {
+                                    ufavoritePeople.push(response.data);
+                                })
+                        }
+                        var ufavoritePlanets = [];
+                        for (var x in vm.thisUser.favoritePlanets) {
+                            SwapiService
+                                .getPlanetById(vm.thisUser.favoritePlanets[x])
+                                .then(function (response) {
+                                    ufavoritePlanets.push(response.data);
+                                })
+                        }
+
+                        vm.thisUserFavoritePeople = ufavoritePeople;
+                        vm.thisUserFavoritePlanets = ufavoritePlanets;
 
                         vm.followingUser = false;
                         for (var v in vm.thisUser.followers) {

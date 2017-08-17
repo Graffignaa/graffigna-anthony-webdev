@@ -49,7 +49,9 @@ module.exports = function (app) {
     function addFavoritePlanet(req, res) {
 
         var userId = req.params.uid;
-        var favId = req.body; //ID of planet being favorited
+        var favId = req.body.url.substring(29, req.body.url.length - 1); //ID of person being favorited
+
+        console.log(favId);
 
         var user = findByIdInternal(userId);
         user.favoritePlanets.push(favId);
@@ -62,8 +64,7 @@ module.exports = function (app) {
 
     function removeFavoritePlanet(req, res) {
         var userId = req.params.uid;
-        var favId = req.body
-
+        var favId = req.body.url.substring(29, req.body.url.length - 1); //ID of person being favorited
         var user = findByIdInternal(userId);
 
         for (var f in user.favoritePlanets) {
@@ -81,10 +82,14 @@ module.exports = function (app) {
     function addFavoritePerson(req, res) {
 
         var userId = req.params.uid;
-        var favId = req.body; //ID of person being favorited
+        var favId = req.body.url.substring(28, req.body.url.length - 1); //ID of person being favorited
+
+        console.log(favId);
 
         var user = findByIdInternal(userId);
         user.favoritePeople.push(favId);
+
+        console.log(user.favoritePeople);
 
         res.json(user);
         return user;
@@ -94,7 +99,7 @@ module.exports = function (app) {
 
     function removeFavoritePerson(req, res) {
         var userId = req.params.uid;
-        var favId = req.body
+        var favId = req.body.url.substring(28, req.body.url.length - 1); //ID of person being favorited
 
         var user = findByIdInternal(userId);
 

@@ -13,7 +13,17 @@
                 <div ng-show="model.ownProfile">
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li><a ng-click="model.updateUser(model.thisUser)"><span class="glyphicon glyphicon-ok"></span></a>
+                        <li><a ng-click="model.updateUser(model.thisUser)"><span class="glyphicon glyphicon-ok"></span>
+                            Update Profile</a>
+                        </li>
+                        <li>
+                            <a href="#!/{{model.loggedInId}}/user"><span class="glyphicon glyphicon-th-list"></span> See
+                                All Users</a>
+                        </li>
+                        <li>
+                            <a href="#!/{{model.loggedInId}}/search"><span class="glyphicon glyphicon-search"></span>
+                                Search Planets and People
+                            </a>
                         </li>
 
                     </ul>
@@ -21,6 +31,10 @@
             </div>
         </div>
     </nav>
+
+    <div class="container-fluid">
+
+    </div>
 
 
     <div ng-show="model.ownProfile">
@@ -84,31 +98,33 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <br>
+
+    <div class="container-fluid text-center">
         <h2 ng-show="model.thisUserFollowers.length > 0">Followers</h2>
-        <ul>
-            <li ng-repeat="user in model.thisUserFollowers">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="user in model.thisUserFollowers">
                 <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
             </li>
         </ul>
 
         <h2 ng-show="model.thisUserFollowing.length > 0">Following</h2>
-        <ul>
-        </ul>
-        <li ng-repeat="user in model.thisUserFollowing">
-            <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
-        </li>
-        </ul>
-        <h2 ng-show="model.thisUserFavorites.length > 0">Favorites</h2>
-        <ul>
-            <li ng-repeat="media in model.thisUserFavorites">
-                <a href="#!/{{model.loggedInId}}/details/{{media.id}}">{{media.name}}</a>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="user in model.thisUserFollowing">
+                <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
             </li>
         </ul>
+        <div class="text-center">
+            <h2 ng-show="model.thisUserFavoritePeople.length > 0">Favorite People</h2>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="person in model.thisUserFavoritePeople">
+
+                    <a href="#!/{{model.loggedInId}}/person/{{person.url.substring(28, (person.url.length - 1))}}">{{person.name}}</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="container-fluid">
-        <a class="btn btn-default btn-info" href="#!/{{model.loggedInId}}/user">See All Users</a>
-    </div>
+
     <!-- Footer To Profile -->
     <footer>
         <div class="navbar navbar-inverse navbar-fixed-bottom">

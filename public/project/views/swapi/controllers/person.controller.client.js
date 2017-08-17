@@ -6,11 +6,14 @@
         .module("StarBook")
         .controller("PersonController", PersonController);
 
-    function PersonController($location, $routeParams, SwapiService, $route) {
+    function PersonController($location, $routeParams, SwapiService, UserService, $route) {
         var vm = this;
 
         vm.loggedInId = $routeParams["loggedIn"];
         vm.personId = $routeParams["id"];
+
+        vm.favorite = favorite;
+        vm.unfavorite = unfavorite;
 
         // vm.searchPerson = searchPerson;
         // vm.searchPlanet = searchPlanet;
@@ -45,7 +48,22 @@
                                 vm.films.push(response.data);
                             })
                     }
-                    console.log(vm.films);
+
+                    vm.favorited = false;
+
+                    UserService
+                        .findUserById(vm.loggedInId)
+                        .then(function (response) {
+                            vm.loggedInUser = response.data;
+
+
+                            for (var i in vm.loggedInUser.favoritePeople) {
+                                if (vm.loggedInUser.favoritePeople[i] === vm.personId) {
+                                    vm.favorited = true;
+                                }
+                            }
+                            console.log(vm.favorited);
+                        });
 
                 });
 
@@ -53,6 +71,22 @@
         }
 
         init();
+
+        function favorite() {
+            UserService
+                .addFavoritePerson(vm.loggedInId, vm.person)
+                .then(function (response) {
+                    $route.reload();
+                })
+        }
+
+        function unfavorite() {
+            UserService
+                .removeFavoritePerson(vm.loggedInId, vm.person)
+                .then(function (response) {
+                    $route.reload();
+                })
+        }
 
 
     }
