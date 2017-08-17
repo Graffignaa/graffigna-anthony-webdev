@@ -11,7 +11,8 @@ module.exports = function (app) {
             "email": "alice@wonderland.com",
             "followers": [],
             "following": [],
-            "favorites": []
+            "favoritePeople": [],
+            "favoritePlanets": []
         },
         {
             "_id": "234",
@@ -21,7 +22,8 @@ module.exports = function (app) {
             "email": "bob@marley.com",
             "followers": [],
             "following": [],
-            "favorites": []
+            "favoritePeople": [],
+            "favoritePlanets": []
         }
 
     ];
@@ -38,15 +40,19 @@ module.exports = function (app) {
     app.put("/api/user/follow/:uid", followUser);
     app.put("/api/user/unfollow/:uid", unfollowUser);
 
+    app.put("/api/person/favorite/:uid", addFavoritePerson);
+    app.put("/api/person/unfavorite/:uid", removeFavoritePerson);
+    app.put("/api/planet/favorite/:uid", addFavoritePlanet);
+    app.put("/api/planet/unfavorite/:uid", removeFavoritePlanet);
 
-    function addFavorite(req, res) {
+
+    function addFavoritePlanet(req, res) {
 
         var userId = req.params.uid;
-        var album = req.body;
-        console.log(album.id);
+        var favId = req.body; //ID of planet being favorited
 
         var user = findByIdInternal(userId);
-        user.favorites.push(album.id);
+        user.favoritePlanets.push(favId);
 
         res.json(user);
         return user;
@@ -54,17 +60,47 @@ module.exports = function (app) {
     }
 
 
-    function removeFavorite(req, res) {
+    function removeFavoritePlanet(req, res) {
         var userId = req.params.uid;
-        var album = req.body;
-        var albumId = album.id;
-
+        var favId = req.body
 
         var user = findByIdInternal(userId);
 
-        for (var f in user.favorites) {
-            if (user.favorites[f] === albumId) {
-                user.favorites.splice(+f, 1);
+        for (var f in user.favoritePlanets) {
+            if (user.favoritePlanets[f] === favId) {
+                user.favoritePlanets.splice(+f, 1);
+                res.json(200);
+                return user;
+            }
+        }
+        res.json(404);
+
+
+    }
+
+    function addFavoritePerson(req, res) {
+
+        var userId = req.params.uid;
+        var favId = req.body; //ID of person being favorited
+
+        var user = findByIdInternal(userId);
+        user.favoritePeople.push(favId);
+
+        res.json(user);
+        return user;
+
+    }
+
+
+    function removeFavoritePerson(req, res) {
+        var userId = req.params.uid;
+        var favId = req.body
+
+        var user = findByIdInternal(userId);
+
+        for (var f in user.favoritePeople) {
+            if (user.favoritePeople[f] === favId) {
+                user.favoritePeople.splice(+f, 1);
                 res.json(200);
                 return user;
             }

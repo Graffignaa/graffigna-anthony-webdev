@@ -34,15 +34,25 @@
                         .getSpecies(vm.person.species[0].substring(29, (vm.person.species[0].length - 1)))
                         .then(function (response) {
                             vm.species = response.data;
-                        })
+                        });
+
+                    vm.filmAddresses = vm.person.films;
+                    vm.films = [];
+                    for (var f in vm.filmAddresses) {
+                        SwapiService
+                            .getFilm(vm.filmAddresses[f].substring(27, (vm.filmAddresses[f].length - 1)))
+                            .then(function (response) {
+                                vm.films.push(response.data);
+                            })
+                    }
+                    console.log(vm.films);
+
                 });
 
 
         }
 
         init();
-
-
 
 
     }

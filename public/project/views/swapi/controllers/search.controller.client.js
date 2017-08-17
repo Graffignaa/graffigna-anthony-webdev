@@ -30,6 +30,7 @@
                     .searchPlanet(vm.planetSearch)
                     .then(function (response) {
                         vm.planets = response.data.results;
+
                     })
             }
             else {
@@ -43,6 +44,7 @@
                     .searchPerson(vm.peopleSearch)
                     .then(function (response) {
                         vm.people = response.data.results;
+                        console.log(vm.people);
                     })
             }
             else {

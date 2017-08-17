@@ -18,10 +18,37 @@
             "deleteUser": deleteUser,
             "followUser": followUser,
             "unfollowUser": unfollowUser,
-            "getAllUsers": getAllUsers
+            "getAllUsers": getAllUsers,
+            "addFavoritePerson": addFavoritePerson,
+            "removeFavoritePerson": removeFavoritePerson,
+            "addFavoritePlanet": addFavoritePlanet,
+            "removeFavoritePlanet": removeFavoritePlanet
+
         };
         return api;
 
+
+        function addFavoritePerson(uid, personId) {
+
+            var url = "/api/person/favorite/" + uid;
+            return $http.put(url, personId);
+
+        }
+
+        function removeFavoritePerson(uid, personId) {
+            var url = "/api/person/unfavorite/" + uid;
+            return $http.put(url, personId);
+        }
+
+        function addFavoritePlanet(uid, planetId) {
+            var url = "/api/planet/favorite/" + uid;
+            return $http.put(url, planetId);
+        }
+
+        function removeFavoritePlanet(uid, planetId) {
+            var url = "/api/planet/unfavorite/" + uid;
+            return $http.put(url, planetId);
+        }
 
         function getAllUsers() {
             return $http.get("/api/user/all");

@@ -60,6 +60,15 @@
                    id="planet">
         </a>
 
+        <label for="films">Appeared In</label>
+        <div id="films" ng-repeat="film in model.films">
+            <input name="film"
+                   value="{{film.title}}"
+                   readonly
+                   type="text"
+                   class="form-control">
+        </div>
+
 
     </div>
 

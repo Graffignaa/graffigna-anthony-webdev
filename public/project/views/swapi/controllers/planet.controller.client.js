@@ -12,9 +12,6 @@
         vm.loggedInId = $routeParams["loggedIn"];
         vm.planetId = $routeParams["id"];
 
-        // vm.searchPerson = searchPerson;
-        // vm.searchPlanet = searchPlanet;
-
 
         function init() {
 
@@ -31,6 +28,17 @@
                                 vm.inhabitants.push(response.data);
                             })
                     }
+                    vm.filmAddresses = vm.planet.films;
+                    vm.films = [];
+                    for (var f in vm.filmAddresses) {
+                        SwapiService
+                            .getFilm(vm.filmAddresses[f].substring(27, (vm.filmAddresses[f].length - 1)))
+                            .then(function (response) {
+                                vm.films.push(response.data);
+                            })
+                    }
+                    console.log(vm.films);
+
 
                 });
 
@@ -39,31 +47,7 @@
 
         init();
 
-        function searchPlanet() {
-            if (vm.planetSearch !== "") {
-                SwapiService
-                    .searchPlanet(vm.planetSearch)
-                    .then(function (response) {
-                        vm.planets = response.data.results;
-                    })
-            }
-            else {
-                console.log("No Text");
-            }
-        }
 
-        function searchPerson() {
-            if (vm.peopleSearch !== "") {
-                SwapiService
-                    .searchPerson(vm.peopleSearch)
-                    .then(function (response) {
-                        vm.people = response.data.results;
-                    })
-            }
-            else {
-                console.log("No Text");
-            }
-        }
 
 
     }
