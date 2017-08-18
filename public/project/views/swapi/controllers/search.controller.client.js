@@ -12,6 +12,7 @@
         vm.peopleSearch = "";
         vm.planetSearch = "";
         vm.loggedInId = $routeParams["loggedIn"];
+        vm.peopleError = false;
 
         vm.searchPerson = searchPerson;
         vm.searchPlanet = searchPlanet;
@@ -31,6 +32,13 @@
                     .then(function (response) {
                         vm.planets = response.data.results;
 
+                        if (vm.planets.length === 0) {
+                            vm.planetError = true;
+                        }
+                        else {
+                            vm.planetError = false;
+                        }
+
                     })
             }
             else {
@@ -44,7 +52,13 @@
                     .searchPerson(vm.peopleSearch)
                     .then(function (response) {
                         vm.people = response.data.results;
-                        console.log(vm.people);
+
+                        if (vm.people.length === 0) {
+                            vm.peopleError = true;
+                        }
+                        else {
+                            vm.peopleError = false;
+                        }
                     })
             }
             else {
