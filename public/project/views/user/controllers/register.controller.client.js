@@ -22,13 +22,16 @@
             UserService.findUserByUsername(user.username)
                 .then(function (response) {
                         _user = response.data;
-                        console.log(_user);
-                        if (_user === "0" || _user === 404) {
+                        console.log("HELLO I AM USER" + _user.json);
+                        if (_user === "0" || _user === 404)  {
+                            console.log("past undefined");
                             return UserService
                                 .createUser(user)
                                 .then(function (response) {
+                                    console.log("Oh dear god pls");
                                     _user = response.data;
-                                    $location.url("/" + user._id + "/user/" + user._id);
+                                    console.log(_user);
+                                    $location.url("/" + _user._id + "/user/" + _user._id);
                                 });
 
                         } else {

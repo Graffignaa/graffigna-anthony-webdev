@@ -47,7 +47,7 @@
             return $http.put(url, planet);
         }
 
-        function removeFavoritePlanet(uid, planetId) {
+        function removeFavoritePlanet(uid, planet) {
             var url = "/api/planet/unfavorite/" + uid;
             return $http.put(url, planet);
         }
@@ -73,7 +73,10 @@
 
             var url = "/api/user";
 
-            return $http.post(url, user);
+            console.log("CREATE:" + url);
+            var ret = $http.post(url, user);
+            console.log("RET:" + ret.json);
+            return ret;
 
         }
 

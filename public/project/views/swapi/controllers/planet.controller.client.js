@@ -49,9 +49,8 @@
                         .then(function (response) {
                             vm.loggedInUser = response.data;
 
-
-                            for (var i in vm.loggedInUser.favoritePlanets) {
-                                if (vm.loggedInUser.favoritePlanets[i] === vm.personId) {
+                            for (var z in vm.loggedInUser.favoritePlanets) {
+                                if (vm.loggedInUser.favoritePlanets[z] + "" === vm.planetId) {
                                     vm.favorited = true;
                                 }
                             }
@@ -69,7 +68,7 @@
 
         function favorite() {
             UserService
-                .addFavoritePlanet(vm.loggedInId, vm.person)
+                .addFavoritePlanet(vm.loggedInId, vm.planet)
                 .then(function (response) {
                     $route.reload();
                 })
@@ -77,7 +76,7 @@
 
         function unfavorite() {
             UserService
-                .removeFavoritePlanet(vm.loggedInId, vm.person)
+                .removeFavoritePlanet(vm.loggedInId, vm.planet)
                 .then(function (response) {
                     $route.reload();
                 })

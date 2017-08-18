@@ -203,18 +203,26 @@ module.exports = function (app) {
         var username = req.query.username;
         var password = req.query.password;
 
+        console.log("find");
+        console.log(username);
+        console.log(password);
 
         if (password) {
 
+            console.log("flag");
             userModel
                 .findUserByCredentials(username, password)
                 .then(function (user) {
-                    if (user === null) {
+                    if (user === undefined) {
+                        console.log("hello from service server.");
                         res.send("0");
                         return;
                     }
+                    console.log("hello from a slightly different point.");
+                    console.log(user);
+                    console.log("RES is " + res);
                     res.json(user);
-                    return;
+
                 }, function (err) {
                     res.sendStatus(404).send(err);
                 })
@@ -228,7 +236,8 @@ module.exports = function (app) {
                         res.send("0");
                         return;
                     }
-                    res.json(user);
+                    console.log("RES is " + res);
+                    res.send(user);
                     return;
                 }, function (err) {
                     res.status(500).send(err);
@@ -236,7 +245,6 @@ module.exports = function (app) {
                 });
             return;
         }
-        res.json("0");
     }
 
 

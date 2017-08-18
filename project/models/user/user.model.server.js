@@ -26,8 +26,8 @@ userModel.removeFavoritePlanet = removeFavoritePlanet;
 module.exports = userModel;
 
 function createUser(user) {
-    return userModel
-        .create(user);
+    console.log("we got here");
+    return userModel.create(user);
 }
 
 function getAllUsers() {
@@ -57,8 +57,14 @@ function findUserByUsername(username) {
 }
 
 function findUserByCredentials(username, password) {
-    return userModel
-        .findOne({username: username, password: password});
+
+    //return userModel.findOne({username: "e", password: "e"});
+
+
+    console.log("we got here NOW");
+    var v = userModel.findOne({username: username, password: password});
+    return v;
+
 }
 
 
@@ -85,6 +91,7 @@ function addFavoritePlanet(userId, favId) {
     return userModel
         .findUserById(userId)
         .then(function (user) {
+            console.log(user);
             user.favoritePlanets.push(favId);
             return user.save();
         })

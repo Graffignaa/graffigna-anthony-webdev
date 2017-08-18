@@ -55,10 +55,12 @@
                         .findUserById(vm.loggedInId)
                         .then(function (response) {
                             vm.loggedInUser = response.data;
-
+                            console.log(vm.loggedInUser)
 
                             for (var i in vm.loggedInUser.favoritePeople) {
-                                if (vm.loggedInUser.favoritePeople[i] === vm.personId) {
+                                console.log(typeof vm.loggedInUser.favoritePeople[i]);
+                                console.log(typeof vm.personId);
+                                if (vm.loggedInUser.favoritePeople[i] + "" === vm.personId) {
                                     vm.favorited = true;
                                 }
                             }

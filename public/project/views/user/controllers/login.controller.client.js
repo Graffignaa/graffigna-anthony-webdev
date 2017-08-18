@@ -16,17 +16,14 @@
         init();
 
         function login(user) {
-            if (!user) {
-                vm.errorMessage = "User not found";
-                return;
-            }
             UserService
                 .findUserByCredentials(user.username, user.password)
                 .then(function (response) {
                     user = response.data;
-                    console.log(user);
+                    console.log("LOGIN:" + user);
                     if (user === "0") {
                         vm.errorMessage = "User not found";
+                        console.log(vm.errorMessage)
                     } else {
                         $location.url("/" + user._id + "/user/" + user._id);
                     }

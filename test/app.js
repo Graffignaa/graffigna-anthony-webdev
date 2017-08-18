@@ -17,7 +17,7 @@ if (process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
 // above with your own URL given to you by mLab
 
 var mongoose = require("mongoose");
-mongoose.connect(connectionString);
+//mongoose.connect(connectionString);
 mongoose.Promise = q.Promise;
 
 var TestSchema = mongoose.Schema({
