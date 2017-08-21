@@ -37,6 +37,26 @@
 
         init();
 
+        function createUser() {
+            if (vm.user) {
+                UserService
+                    .createUser(vm.user)
+                    .then(function (response) {
+                        vm._user = response.data;
+                        console.log(vm._user);
+                        $location.url("/" + vm.loggedInId + "/user/" + vm._user._id);
+                    })
+            }
+        }
+
+        function deleteUser(id) {
+            UserService
+                .deleteUser(id)
+                .then(function (response) {
+                    $route.reload();
+                })
+        }
+
     }
 
 })();
