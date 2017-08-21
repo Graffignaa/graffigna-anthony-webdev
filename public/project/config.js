@@ -24,6 +24,11 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
+            .when("/:loggedIn/admin/:userId", {
+                templateUrl: "views/user/templates/admin.view.client.html",
+                controller: "AdminController",
+                controllerAs: "model"
+            })
 
             .when("/:loggedIn/user", {
                 templateUrl: "views/user/templates/user-list.view.client.html",
