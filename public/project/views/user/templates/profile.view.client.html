@@ -36,106 +36,104 @@
 
     <div class="container-fluid">
 
-    </div>
+        <div ng-show="model.ownProfile">
+            <div class="container-fluid">
+                <label for="username">Username</label>
+                <input name="username"
+                       ng-model="model.thisUser.username"
+                       readonly
+                       type="text"
+                       class="form-control"
+                       id="username">
 
+                <label for="email">Email</label>
+                <input name="email"
+                       ng-model="model.thisUser.email"
+                       type="email"
+                       class="form-control"
+                       id="email">
 
-    <div ng-show="model.ownProfile">
-        <div class="container-fluid">
-            <label for="username">Username</label>
-            <input name="username"
-                   ng-model="model.thisUser.username"
-                   readonly
-                   type="text"
-                   class="form-control"
-                   id="username">
-
-            <label for="email">Email</label>
-            <input name="email"
-                   ng-model="model.thisUser.email"
-                   type="email"
-                   class="form-control"
-                   id="email">
-
-            <label for="name">Name</label>
-            <input name="name"
-                   ng-model="model.thisUser.name"
-                   type="text"
-                   class="form-control"
-                   id="name">
-            <a class="btn btn-default btn-block btn-danger"
-               href="#!/login"
-               role="button">Logout</a>
-        </div>
-    </div>
-
-    <div ng-show="!model.ownProfile">
-        <div class="container-fluid">
-            <label for="username1">Username</label>
-            <input name="username"
-                   ng-model="model.thisUser.username"
-                   readonly
-                   type="text"
-                   class="form-control"
-                   id="username1">
-            <label for="name1">Name</label>
-            <input name="name"
-                   ng-model="model.thisUser.name"
-                   readonly
-                   type="text"
-                   class="form-control"
-                   id="name1">
-            <div ng-show="model.followingUser">
-                <!-- unfollow button -->
+                <label for="name">Name</label>
+                <input name="name"
+                       ng-model="model.thisUser.name"
+                       type="text"
+                       class="form-control"
+                       id="name">
                 <a class="btn btn-default btn-block btn-danger"
-                   ng-click="model.unfollowUser()"
-                   role="button">Unfollow</a>
+                   href="#!/login"
+                   role="button">Logout</a>
             </div>
-
-            <div ng-hide="model.followingUser">
-                <a class="btn btn-default btn-block btn-success"
-                   ng-click="model.followUser()"
-                   role="button">Follow</a>
-            </div>
-
         </div>
-    </div>
 
-    <br>
+        <div ng-show="!model.ownProfile">
+            <div class="container-fluid">
+                <label for="username1">Username</label>
+                <input name="username"
+                       ng-model="model.thisUser.username"
+                       readonly
+                       type="text"
+                       class="form-control"
+                       id="username1">
+                <label for="name1">Name</label>
+                <input name="name"
+                       ng-model="model.thisUser.name"
+                       readonly
+                       type="text"
+                       class="form-control"
+                       id="name1">
+                <div ng-show="model.followingUser">
+                    <!-- unfollow button -->
+                    <a class="btn btn-default btn-block btn-danger"
+                       ng-click="model.unfollowUser()"
+                       role="button">Unfollow</a>
+                </div>
 
-    <div class="container-fluid text-center">
-        <h2 ng-show="model.thisUserFollowers.length > 0">Followers</h2>
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="user in model.thisUserFollowers">
-                <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
-            </li>
-        </ul>
+                <div ng-hide="model.followingUser">
+                    <a class="btn btn-default btn-block btn-success"
+                       ng-click="model.followUser()"
+                       role="button">Follow</a>
+                </div>
 
-        <h2 ng-show="model.thisUserFollowing.length > 0">Following</h2>
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="user in model.thisUserFollowing">
-                <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
-            </li>
-        </ul>
-        <div class="text-center">
-            <h2 ng-show="model.thisUserFavoritePeople.length > 0">Favorite People</h2>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container-fluid text-center">
+            <h2 ng-show="model.thisUserFollowers.length > 0">Followers</h2>
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="person in model.thisUserFavoritePeople">
-
-                    <a href="#!/{{model.loggedInId}}/person/{{person.url.substring(28, (person.url.length - 1))}}">{{person.name}}</a>
+                <li class="list-group-item" ng-repeat="user in model.thisUserFollowers">
+                    <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
                 </li>
             </ul>
-        </div>
-        <div class="text-center">
-            <h2 ng-show="model.thisUserFavoritePlanets.length > 0">Favorite Planets</h2>
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="planet in model.thisUserFavoritePlanets">
 
-                    <a href="#!/{{model.loggedInId}}/planet/{{planet.url.substring(29, (planet.url.length - 1))}}">{{planet.name}}</a>
+            <h2 ng-show="model.thisUserFollowing.length > 0">Following</h2>
+            {{model.thisUserFollowing}}
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="user in model.thisUserFollowing">
+                    <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
                 </li>
             </ul>
+            <div class="text-center">
+                <h2 ng-show="model.thisUserFavoritePeople.length > 0">Favorite People</h2>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="person in model.thisUserFavoritePeople">
+
+                        <a href="#!/{{model.loggedInId}}/person/{{person.url.substring(28, (person.url.length - 1))}}">{{person.name}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="text-center">
+                <h2 ng-show="model.thisUserFavoritePlanets.length > 0">Favorite Planets</h2>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="planet in model.thisUserFavoritePlanets">
+
+                        <a href="#!/{{model.loggedInId}}/planet/{{planet.url.substring(29, (planet.url.length - 1))}}">{{planet.name}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-
     <!-- Footer To Profile -->
     <footer>
         <div class="navbar navbar-inverse navbar-fixed-bottom">

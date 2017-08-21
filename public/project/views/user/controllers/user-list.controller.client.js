@@ -24,7 +24,7 @@
                 .then(function (response) {
                     vm.users = response.data;
                     UserService
-                        .findUserById(loggedInId)
+                        .findUserById(vm.loggedInId)
                         .then(function (response) {
                             if (response.data.role === "admin") {
                                 vm.isAdmin = true;

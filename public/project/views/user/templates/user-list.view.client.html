@@ -14,7 +14,7 @@
             <div ng-repeat="user in model.users">
                 <li class="list-group-item">
                     <a href="#!/{{model.loggedInId}}/user/{{user._id}}">{{user.username}}</a>
-                    <a ng-show="model.isAdmin" ng-click="model.deleteUser(user._id)"><span
+                    <a class="pull-right" ng-show="model.isAdmin" ng-click="model.deleteUser(user._id)"><span
                             class="glyphicon glyphicon-ban-circle"></span> Delete User
                     </a>
                 </li>
